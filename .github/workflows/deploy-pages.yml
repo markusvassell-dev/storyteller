@@ -1,13 +1,17 @@
-# Optional GitHub Pages deployment (fallback host).
-# Cloudflare Pages is the recommended host (see docs/deployment.md) and needs
-# no workflow — it builds from the repo directly. Enable GitHub Pages in the
-# repo settings (Source: GitHub Actions) to use this instead.
+# Optional GitHub Pages deployment (fallback host) — MANUAL ONLY.
+#
+# Cloudflare is the host in use (see docs/deployment.md) and needs no workflow;
+# it builds from the repo directly. This runs only when you ask for it, because
+# actions/deploy-pages fails with a 404 until GitHub Pages is switched on, and
+# a second deploy on every push would publish the app at a second URL nobody
+# asked for.
+#
+# To use it: repo Settings → Pages → Source: GitHub Actions, then run this
+# workflow from the Actions tab. Push-triggered checks live in ci.yml.
 
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -26,7 +30,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version-file: .node-version
           cache: npm
       - run: npm ci
       - run: npm run typecheck

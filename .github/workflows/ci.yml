@@ -1,0 +1,39 @@
+# Checks that should run on every push, independent of where the app is hosted.
+#
+# Cloudflare builds from main automatically, so a broken push would otherwise
+# be discovered by the deploy rather than here. This runs the repo's own gate:
+# typecheck, lint, unit tests, the rights and asset audits, a production build,
+# and the link/PWA check against dist.
+#
+# The Playwright suite is deliberately not here — it needs browser downloads
+# and is run locally (`npm run test:e2e`) before a release.
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      # typecheck + lint + unit tests + rights audit + asset audit
+      - run: npm run check
+      - run: npm run build
+      - run: npm run audit:links

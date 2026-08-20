@@ -1,0 +1,73 @@
+{
+  "id": "builtin-star-coins",
+  "slug": "star-coins",
+  "title": "The Star Coins",
+  "authors": ["After the Brothers Grimm, retold for Storytime Library"],
+  "illustrators": ["Storytime Library placeholder art"],
+  "translators": [],
+  "description": "A kind girl gives away everything she has — and the night sky gives something wonderful back. A gentle bedtime retelling of the Grimm tale of the star money.",
+  "language": "en",
+  "ageRange": "3-5",
+  "readingLevel": "pre-reader",
+  "estimatedMinutes": 3,
+  "categories": ["brothers-grimm", "fairy-tales", "bedtime", "short-reads"],
+  "tags": ["grimm", "stars", "kindness", "bedtime"],
+  "cover": "stories/star-coins/cover.svg",
+  "pages": [
+    {
+      "number": 1,
+      "image": "stories/star-coins/pages/01.svg",
+      "alt": "A girl in a plum-coloured dress stands alone on a grey hillside with a small loaf of bread.",
+      "text": "There was once a girl who had almost nothing at all — only the clothes she wore and one small loaf of bread. Still, she set out into the world with a hopeful heart."
+    },
+    {
+      "number": 2,
+      "image": "stories/star-coins/pages/02.svg",
+      "alt": "The girl shares her loaf of bread with a hungry traveller on the path.",
+      "text": "On the road she met a hungry traveller. “Please, have my bread,” she said, and gave the whole loaf away. It felt light to give, and warm."
+    },
+    {
+      "number": 3,
+      "image": "stories/star-coins/pages/03.svg",
+      "alt": "In a darkening pine forest, the girl gives her warm shawl to a cold child.",
+      "text": "In the woods she met a shivering child, so she gave away her warm shawl. A little farther on, another child had no cap — so she gave her cap away too."
+    },
+    {
+      "number": 4,
+      "image": "stories/star-coins/pages/04.svg",
+      "alt": "The girl stands in a simple white shift under a rising moon.",
+      "text": "At last, in the deep quiet of the night, she gave away the very last thing she had to give. Now she owned nothing in the world — and the forest was dark all around."
+    },
+    {
+      "number": 5,
+      "image": "stories/star-coins/pages/05.svg",
+      "alt": "Bright stars fall from the night sky and turn into gold coins around the smiling girl.",
+      "text": "Then the sky began to shimmer. One by one, the stars slipped loose and fell — tink! tink! tink! — landing all around her as bright gold coins, and she found herself wrapped in a brand-new gown, soft as starlight."
+    },
+    {
+      "number": 6,
+      "image": "stories/star-coins/pages/06.svg",
+      "alt": "The girl walks toward a cozy cottage under the moon, coins glowing on the path.",
+      "text": "She gathered the star coins in her skirt, and from that night on she always had enough — enough to keep, and plenty to share. For a kind heart shines brighter than all the stars. The end."
+    }
+  ],
+  "rights": {
+    "status": "original",
+    "publicDomainBasis": "Tale recorded by the Brothers Grimm (19th century); this text is an original retelling written for this project.",
+    "sourceOfFiles": "Created for the Storytime Library project.",
+    "remoteStorageAllowed": true,
+    "personalUseOnly": false,
+    "modificationAllowed": true,
+    "commercialUseAllowed": false,
+    "notes": "Illustrations are original project-created placeholder artwork."
+  },
+  "source": "Original retelling of the tale recorded by Jacob and Wilhelm Grimm, written and illustrated for Storytime Library.",
+  "attribution": "Retold and illustrated for Storytime Library (placeholder artwork).",
+  "rightsCheckedAt": "2026-08-20T12:00:00.000Z",
+  "storageLocation": "builtin",
+  "offlineStatus": "available",
+  "featured": false,
+  "hidden": false,
+  "createdAt": "2026-08-20T12:00:00.000Z",
+  "updatedAt": "2026-08-20T12:00:00.000Z"
+}

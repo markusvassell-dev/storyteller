@@ -1,0 +1,85 @@
+{
+  "id": "builtin-goldilocks",
+  "slug": "goldilocks",
+  "title": "Goldilocks and the Three Bears",
+  "authors": ["Traditional, retold for Storytime Library"],
+  "illustrators": ["Storytime Library placeholder art"],
+  "translators": [],
+  "description": "A curious girl finds a cottage in the woods — with porridge, chairs and beds that belong to somebody else. A gentle retelling of the beloved tale.",
+  "language": "en",
+  "ageRange": "3-5",
+  "readingLevel": "pre-reader",
+  "estimatedMinutes": 5,
+  "categories": ["fairy-tales", "classics", "bedtime"],
+  "tags": ["bears", "porridge", "forest", "classic"],
+  "cover": "stories/goldilocks/cover.svg",
+  "pages": [
+    {
+      "number": 1,
+      "image": "stories/goldilocks/pages/01.svg",
+      "alt": "A girl with golden hair walks toward a cottage among tall pine trees.",
+      "text": "One bright morning, a girl called Goldilocks went walking in the woods. Between the pines she found a little cottage with its door open wide. “Hello?” she called. Nobody answered."
+    },
+    {
+      "number": 2,
+      "image": "stories/goldilocks/pages/02.svg",
+      "alt": "Three bowls of porridge on a wooden table: a big one, a middle one and a small one.",
+      "text": "Inside stood three bowls of porridge. The big bowl was too hot. The middle bowl was too cold. But the little bowl was just right — and Goldilocks ate it all up."
+    },
+    {
+      "number": 3,
+      "image": "stories/goldilocks/pages/03.svg",
+      "alt": "Three wooden chairs of different sizes; Goldilocks sits on the smallest, which has broken.",
+      "text": "Then she found three chairs. The big chair was too hard. The middle chair was too soft. The little chair was just right… until CRACK! It broke right under her."
+    },
+    {
+      "number": 4,
+      "image": "stories/goldilocks/pages/04.svg",
+      "alt": "A bedroom with three beds; Goldilocks stands beside the smallest bed.",
+      "text": "Upstairs waited three beds. The big bed was too lumpy. The middle bed was too bouncy. But the little bed was just right."
+    },
+    {
+      "number": 5,
+      "image": "stories/goldilocks/pages/05.svg",
+      "alt": "Goldilocks sleeps soundly in the little bed.",
+      "text": "And before she could count three sheep, Goldilocks fell fast asleep."
+    },
+    {
+      "number": 6,
+      "image": "stories/goldilocks/pages/06.svg",
+      "alt": "Three bears — big, middle-sized and small — walk home toward their cottage.",
+      "text": "Just then, home came the three bears from their morning walk. “Someone's been eating my porridge,” rumbled Papa Bear. “Someone's been sitting in my chair,” said Mama Bear. “And someone broke mine!” squeaked Baby Bear."
+    },
+    {
+      "number": 7,
+      "image": "stories/goldilocks/pages/07.svg",
+      "alt": "The three bears find Goldilocks asleep in the little bed.",
+      "text": "Up the stairs they crept. “Someone's been sleeping in my bed,” said Papa Bear. “And mine,” said Mama Bear. “And she's STILL THERE!” squeaked Baby Bear. Goldilocks opened her eyes and saw three furry faces looking down at her."
+    },
+    {
+      "number": 8,
+      "image": "stories/goldilocks/pages/08.svg",
+      "alt": "Goldilocks runs down the path toward home while the three bears watch from their door.",
+      "text": "Up she jumped, out she dashed, and all the way home she ran! And ever after, Goldilocks remembered to knock first — and the three bears kept their door closed at breakfast time."
+    }
+  ],
+  "rights": {
+    "status": "original",
+    "publicDomainBasis": "Traditional tale first recorded in the 19th century; this text is an original retelling written for this project.",
+    "sourceOfFiles": "Created for the Storytime Library project.",
+    "remoteStorageAllowed": true,
+    "personalUseOnly": false,
+    "modificationAllowed": true,
+    "commercialUseAllowed": false,
+    "notes": "Illustrations are original project-created placeholder artwork."
+  },
+  "source": "Original retelling of the traditional English tale, written and illustrated for Storytime Library.",
+  "attribution": "Retold and illustrated for Storytime Library (placeholder artwork).",
+  "rightsCheckedAt": "2026-08-20T12:00:00.000Z",
+  "storageLocation": "builtin",
+  "offlineStatus": "available",
+  "featured": false,
+  "hidden": false,
+  "createdAt": "2026-08-20T12:00:00.000Z",
+  "updatedAt": "2026-08-20T12:00:00.000Z"
+}

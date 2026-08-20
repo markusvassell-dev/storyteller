@@ -1,0 +1,85 @@
+{
+  "id": "builtin-three-little-pigs",
+  "slug": "three-little-pigs",
+  "title": "The Three Little Pigs",
+  "authors": ["Traditional, retold for Storytime Library"],
+  "illustrators": ["Storytime Library placeholder art"],
+  "translators": [],
+  "description": "Three little pigs set out to build homes of their own — but one huffing, puffing wolf has other plans. A cozy retelling of the classic tale.",
+  "language": "en",
+  "ageRange": "3-5",
+  "readingLevel": "pre-reader",
+  "estimatedMinutes": 4,
+  "categories": ["folk-tales", "classics", "animals", "bedtime"],
+  "tags": ["pigs", "wolf", "houses", "classic"],
+  "cover": "stories/three-little-pigs/cover.svg",
+  "pages": [
+    {
+      "number": 1,
+      "image": "stories/three-little-pigs/pages/01.svg",
+      "alt": "Three smiling pigs in blue overalls stand in front of a cottage on a sunny green hill.",
+      "text": "Once upon a time, three little pigs waved goodbye to their mother. “Build your houses strong,” she said, “and look after one another.”"
+    },
+    {
+      "number": 2,
+      "image": "stories/three-little-pigs/pages/02.svg",
+      "alt": "The first pig stands proudly beside a small house made of yellow straw.",
+      "text": "The first little pig built a house of straw. It was quick and it was comfy. “Done before lunch!” he said."
+    },
+    {
+      "number": 3,
+      "image": "stories/three-little-pigs/pages/03.svg",
+      "alt": "Two pigs beside a house made of brown sticks, with a big tree nearby.",
+      "text": "The second little pig built a house of sticks. Snap, tap, done! “Plenty of time left to play,” she giggled."
+    },
+    {
+      "number": 4,
+      "image": "stories/three-little-pigs/pages/04.svg",
+      "alt": "The third pig in yellow overalls stands beside a sturdy red brick house.",
+      "text": "The third little pig built a house of bricks. It took all day and all week. Brick by brick by brick — until it was strong as strong can be."
+    },
+    {
+      "number": 5,
+      "image": "stories/three-little-pigs/pages/05.svg",
+      "alt": "A grey wolf blows hard at the straw house, which leans in the wind.",
+      "text": "Then along came a hungry wolf. “Little pig, little pig, let me in!” he growled. “Not by the hair of my chinny-chin-chin!” So the wolf huffed, and he puffed, and he blew the straw house down!"
+    },
+    {
+      "number": 6,
+      "image": "stories/three-little-pigs/pages/06.svg",
+      "alt": "The wolf blows at the stick house while two pigs hurry away to safety.",
+      "text": "The first pig ran to the stick house. But the wolf huffed, and he puffed, and whoosh — down came the sticks too! The two pigs ran as fast as their trotters could carry them."
+    },
+    {
+      "number": 7,
+      "image": "stories/three-little-pigs/pages/07.svg",
+      "alt": "At night, the wolf blows with all his might at the brick house, which does not move.",
+      "text": "At the brick house, the wolf huffed and puffed and HUFFED and PUFFED… but the little brick house did not budge. Not one brick. The tired wolf gave one last wheeze and slunk away into the woods."
+    },
+    {
+      "number": 8,
+      "image": "stories/three-little-pigs/pages/08.svg",
+      "alt": "The three pigs celebrate together inside the warm brick house beside a big soup pot.",
+      "text": "Safe and snug, the three little pigs shared hot soup in the strong brick house. “Next spring,” yawned the first pig, “we'll build with bricks together.” And they all lived happily ever after."
+    }
+  ],
+  "rights": {
+    "status": "original",
+    "publicDomainBasis": "Traditional folk tale; this text is an original retelling written for this project.",
+    "sourceOfFiles": "Created for the Storytime Library project.",
+    "remoteStorageAllowed": true,
+    "personalUseOnly": false,
+    "modificationAllowed": true,
+    "commercialUseAllowed": false,
+    "notes": "Illustrations are original project-created placeholder artwork."
+  },
+  "source": "Original retelling of the traditional English folk tale, written and illustrated for Storytime Library.",
+  "attribution": "Retold and illustrated for Storytime Library (placeholder artwork).",
+  "rightsCheckedAt": "2026-08-20T12:00:00.000Z",
+  "storageLocation": "builtin",
+  "offlineStatus": "available",
+  "featured": true,
+  "hidden": false,
+  "createdAt": "2026-08-20T12:00:00.000Z",
+  "updatedAt": "2026-08-20T12:00:00.000Z"
+}

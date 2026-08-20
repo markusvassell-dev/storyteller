@@ -1,0 +1,79 @@
+{
+  "id": "builtin-gingerbread-man",
+  "slug": "gingerbread-man",
+  "title": "The Gingerbread Man",
+  "authors": ["Traditional, retold for Storytime Library"],
+  "illustrators": ["Storytime Library placeholder art"],
+  "translators": [],
+  "description": "Fresh from the oven, one very fast cookie leads the whole countryside on a merry chase. A playful retelling of the classic runaway-cookie tale.",
+  "language": "en",
+  "ageRange": "3-5",
+  "readingLevel": "pre-reader",
+  "estimatedMinutes": 4,
+  "categories": ["folk-tales", "funny", "short-reads"],
+  "tags": ["cookie", "fox", "chase", "classic"],
+  "cover": "stories/gingerbread-man/cover.svg",
+  "pages": [
+    {
+      "number": 1,
+      "image": "stories/gingerbread-man/pages/01.svg",
+      "alt": "A grandmother in a cozy kitchen opens the oven, where a gingerbread man cookie glows warm.",
+      "text": "One afternoon, a grandmother baked a gingerbread man with icing hair and two red candy buttons. But when the oven door opened — pop! — out he jumped, right onto his cookie feet."
+    },
+    {
+      "number": 2,
+      "image": "stories/gingerbread-man/pages/02.svg",
+      "alt": "The gingerbread man runs down a garden path while the grandmother chases behind.",
+      "text": "“Stop, little cookie!” called the grandmother. But he only ran faster, singing, “Run, run, as fast as you can — you can't catch me, I'm the gingerbread man!”"
+    },
+    {
+      "number": 3,
+      "image": "stories/gingerbread-man/pages/03.svg",
+      "alt": "A big brown bear watches the gingerbread man dash across a green meadow.",
+      "text": "He raced past a bear with a rumbling tummy. “Halt, little snack!” said the bear. But the gingerbread man just laughed and sang his song, and the bear was left far behind."
+    },
+    {
+      "number": 4,
+      "image": "stories/gingerbread-man/pages/04.svg",
+      "alt": "A white goat looks up as the gingerbread man runs by in the sunshine.",
+      "text": "He zipped past a goat chewing daisies. “Baa! Come back!” bleated the goat. But nobody — nobody! — was as fast as the gingerbread man."
+    },
+    {
+      "number": 5,
+      "image": "stories/gingerbread-man/pages/05.svg",
+      "alt": "The gingerbread man stops at a wide blue river, where an orange fox waits nearby.",
+      "text": "Then he came to a wide, wet river. Cookies cannot swim! “Hop onto my back,” said a smooth voice. It was a fox, smiling a foxy smile. “I'll carry you across.”"
+    },
+    {
+      "number": 6,
+      "image": "stories/gingerbread-man/pages/06.svg",
+      "alt": "The fox swims across the river with the gingerbread man balanced on his nose.",
+      "text": "Into the water they went. “The river is deep — climb up to my nose!” said the fox. The gingerbread man climbed higher and higher… and SNAP! The clever fox gobbled him up, every last crumb."
+    },
+    {
+      "number": 7,
+      "image": "stories/gingerbread-man/pages/07.svg",
+      "alt": "Back home at night, the grandmother sets a fresh tray of gingerbread by the window.",
+      "text": "Back home, the grandmother smiled and mixed another bowl of dough. “This time,” she said, “I'll bake the buttons on tight — and eat my cookies warm.” And that is just what she did."
+    }
+  ],
+  "rights": {
+    "status": "original",
+    "publicDomainBasis": "Traditional folk tale; this text is an original retelling written for this project.",
+    "sourceOfFiles": "Created for the Storytime Library project.",
+    "remoteStorageAllowed": true,
+    "personalUseOnly": false,
+    "modificationAllowed": true,
+    "commercialUseAllowed": false,
+    "notes": "Illustrations are original project-created placeholder artwork."
+  },
+  "source": "Original retelling of the traditional runaway-cookie folk tale, written and illustrated for Storytime Library.",
+  "attribution": "Retold and illustrated for Storytime Library (placeholder artwork).",
+  "rightsCheckedAt": "2026-08-20T12:00:00.000Z",
+  "storageLocation": "builtin",
+  "offlineStatus": "available",
+  "featured": false,
+  "hidden": false,
+  "createdAt": "2026-08-20T12:00:00.000Z",
+  "updatedAt": "2026-08-20T12:00:00.000Z"
+}

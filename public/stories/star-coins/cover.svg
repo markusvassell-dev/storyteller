@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1600" role="img">
+<rect x="0" y="0" width="1200" height="1600" rx="0" fill="#251f3f"/>
+<defs><linearGradient id="nsky" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#251f3f"/><stop offset="1" stop-color="#4a3f78"/>
+  </linearGradient></defs><rect x="0" y="0" width="1200" height="1600" rx="0" fill="url(#nsky)"/><circle cx="140" cy="180" r="6" fill="#f4edff"/><circle cx="340" cy="90" r="6" fill="#f4edff"/><circle cx="520" cy="220" r="6" fill="#f4edff"/><circle cx="760" cy="130" r="6" fill="#f4edff"/><circle cx="980" cy="200" r="6" fill="#f4edff"/><circle cx="1080" cy="340" r="6" fill="#f4edff"/><circle cx="220" cy="380" r="6" fill="#f4edff"/><circle cx="640" cy="320" r="6" fill="#f4edff"/><circle cx="880" cy="420" r="6" fill="#f4edff"/><circle cx="420" cy="460" r="6" fill="#f4edff"/><circle cx="120" cy="560" r="6" fill="#f4edff"/><circle cx="1020" cy="90" r="6" fill="#f4edff"/>
+<circle cx="950" cy="220" r="100" fill="#f2b866"/><circle cx="995" cy="190" r="82" fill="#0000"/><circle cx="995" cy="192" r="80" fill="rgba(37,31,63,0)"/><circle cx="925" cy="240" r="14.000000000000002" fill="#e09b44"/><circle cx="970" cy="195" r="10" fill="#e09b44"/>
+<path d="M0 950 Q 360 790 744 950 T 1200 890 V1600 H0 Z" fill="#57506e" /><path d="M0 1080 Q 504 910 1200 1060 V1600 H0 Z" fill="#3f3a58" />
+<g transform="translate(600 1200) scale(1.7 1.7)"><polygon points="-58,120 58,120 30,6 -30,6" fill="#7f6ba0"/><circle cx="0" cy="-40" r="46" fill="#f6d7b8"/><path d="M-46 -52 Q-52 -100 0 -100 Q52 -100 46 -52 Q46 -28 34 -50 Q10 -74 -20 -58 Q-40 -44 -46 -52 Z" fill="#b58a5e" /><circle cx="-34" cy="-20" r="16" fill="#b58a5e"/><circle cx="34" cy="-20" r="16" fill="#b58a5e"/><circle cx="-14" cy="-42" r="5" fill="#4a3221"/><circle cx="14" cy="-42" r="5" fill="#4a3221"/><path d="M-10 -22 Q0 -14 10 -22" fill="none" stroke="#a65b3a" stroke-width="4" stroke-linecap="round"/><ellipse cx="-52" cy="40" rx="12" ry="40" fill="#f6d7b8"/><ellipse cx="52" cy="40" rx="12" ry="40" fill="#f6d7b8"/><ellipse cx="-26" cy="128" rx="18" ry="10" fill="#7a5236"/><ellipse cx="26" cy="128" rx="18" ry="10" fill="#7a5236"/></g>
+<g transform="translate(300 700) scale(2.6)"><polygon points="0,-22 6,-6 22,-6 9,4 14,20 0,10 -14,20 -9,4 -22,-6 -6,-6" fill="#ffd678"/></g>
+<g transform="translate(520 520) scale(2)"><polygon points="0,-22 6,-6 22,-6 9,4 14,20 0,10 -14,20 -9,4 -22,-6 -6,-6" fill="#ffd678"/></g>
+<g transform="translate(840 640) scale(2.4)"><polygon points="0,-22 6,-6 22,-6 9,4 14,20 0,10 -14,20 -9,4 -22,-6 -6,-6" fill="#ffd678"/></g>
+<circle cx="340" cy="1500" r="28" fill="#ffd678"/><circle cx="340" cy="1500" r="22" fill="#f2b866"/>
+<circle cx="700" cy="1530" r="24" fill="#ffd678"/><circle cx="700" cy="1530" r="18" fill="#f2b866"/>
+<circle cx="900" cy="1480" r="28" fill="#ffd678"/><circle cx="900" cy="1480" r="22" fill="#f2b866"/>
+<rect x="80" y="120" width="1040" height="240" rx="32" fill="rgba(255,250,241,0.94)"/>
+<text x="600" y="225" text-anchor="middle" font-family="'Baloo 2', 'Trebuchet MS', sans-serif" font-weight="800" font-size="86" fill="#2c2547">The Star Coins</text>
+<text x="600" y="310" text-anchor="middle" font-family="'Nunito', sans-serif" font-size="44" fill="#57506e">A Storytime Library retelling</text>
+</svg>

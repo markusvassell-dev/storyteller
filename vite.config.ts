@@ -45,9 +45,27 @@ export default defineConfig({
         // demo library works offline. Audio is runtime-cached (below) because
         // Safari streams it with range requests.
         globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,woff2,webmanifest,json}'],
+        // English-only app: skip precaching the other font subsets.
+        globIgnores: [
+          '**/*devanagari*',
+          '**/*cyrillic*',
+          '**/*vietnamese*',
+          '**/node_modules/**',
+        ],
         maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
         navigateFallbackDenylist: [/^\/api\//],
         runtimeCaching: [
+          {
+            // pdf.js worker (admin PDF import) — cached after first use so
+            // importing keeps working offline.
+            urlPattern: /pdf\.worker.*\.mjs$/,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'pdf-worker',
+              cacheableResponse: { statuses: [0, 200] },
+              expiration: { maxEntries: 2, purgeOnQuotaError: true },
+            },
+          },
           {
             urlPattern: /\/stories\/.*\.(?:mp3|m4a|aac|wav|ogg|opus)$/,
             handler: 'CacheFirst',

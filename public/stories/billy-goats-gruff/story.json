@@ -1,0 +1,79 @@
+{
+  "id": "builtin-billy-goats-gruff",
+  "slug": "billy-goats-gruff",
+  "title": "The Three Billy Goats Gruff",
+  "authors": ["Traditional Norwegian tale, retold for Storytime Library"],
+  "illustrators": ["Storytime Library placeholder art"],
+  "translators": [],
+  "description": "Three goat brothers want to reach the sweet grass across the river — but a grumpy troll lives under the bridge. A trip-trapping retelling of the Norwegian classic.",
+  "language": "en",
+  "ageRange": "3-5",
+  "readingLevel": "pre-reader",
+  "estimatedMinutes": 4,
+  "categories": ["folk-tales", "adventure", "animals"],
+  "tags": ["goats", "troll", "bridge", "norway", "classic"],
+  "cover": "stories/billy-goats-gruff/cover.svg",
+  "pages": [
+    {
+      "number": 1,
+      "image": "stories/billy-goats-gruff/pages/01.svg",
+      "alt": "Three goats of different sizes stand on a dry, yellowish hillside.",
+      "text": "Once there were three billy goat brothers named Gruff. On their side of the river the grass was nibbled short — but across the water the meadow grew green and sweet."
+    },
+    {
+      "number": 2,
+      "image": "stories/billy-goats-gruff/pages/02.svg",
+      "alt": "A wooden bridge crosses a wide blue river between green hills.",
+      "text": "The only way across was an old wooden bridge. And under that bridge lived a grumpy old troll who liked the river loud and the bridge quiet."
+    },
+    {
+      "number": 3,
+      "image": "stories/billy-goats-gruff/pages/03.svg",
+      "alt": "The smallest goat crosses the bridge while the troll rises from underneath.",
+      "text": "Trip-trap, trip-trap went the littlest goat. “WHO trip-traps over MY bridge?” roared the troll. “Only little me,” said the goat. “Wait for my bigger brother — he makes a much finer trip-trap.” And the troll let him pass."
+    },
+    {
+      "number": 4,
+      "image": "stories/billy-goats-gruff/pages/04.svg",
+      "alt": "The middle-sized goat crosses the bridge as the troll watches crossly.",
+      "text": "TRIP-TRAP, TRIP-TRAP went the middle goat. “WHO stomps over MY bridge?” growled the troll. “Only middle-sized me,” said the goat. “Wait for my big brother — his hooves ring like drums!” And the troll waited."
+    },
+    {
+      "number": 5,
+      "image": "stories/billy-goats-gruff/pages/05.svg",
+      "alt": "The biggest goat with curved horns stands tall on the bridge, facing the troll.",
+      "text": "TRIP! TRAP! TRIP! TRAP! The great big goat stepped onto the bridge, horns first. “WHO thunders over MY bridge?” bellowed the troll. “I do,” said the big goat. “And I've been practising my push.”"
+    },
+    {
+      "number": 6,
+      "image": "stories/billy-goats-gruff/pages/06.svg",
+      "alt": "The troll splashes into the river with a great splash.",
+      "text": "One firm, fair push — and SPLASH! The troll tumbled into the cool river, where he bobbed and grumbled and finally floated away downstream to find a quieter bridge."
+    },
+    {
+      "number": 7,
+      "image": "stories/billy-goats-gruff/pages/07.svg",
+      "alt": "All three goats graze happily in a golden evening meadow full of flowers.",
+      "text": "And so the three billy goats Gruff munched the sweet green grass until their tummies were round as barrels. Trip-trap, trip-trap… snip-snap-snout, this tale's told out!"
+    }
+  ],
+  "rights": {
+    "status": "original",
+    "publicDomainBasis": "Traditional Norwegian folk tale; this text is an original retelling written for this project.",
+    "sourceOfFiles": "Created for the Storytime Library project.",
+    "remoteStorageAllowed": true,
+    "personalUseOnly": false,
+    "modificationAllowed": true,
+    "commercialUseAllowed": false,
+    "notes": "Illustrations are original project-created placeholder artwork."
+  },
+  "source": "Original retelling of the traditional Norwegian tale, written and illustrated for Storytime Library.",
+  "attribution": "Retold and illustrated for Storytime Library (placeholder artwork).",
+  "rightsCheckedAt": "2026-08-20T12:00:00.000Z",
+  "storageLocation": "builtin",
+  "offlineStatus": "available",
+  "featured": false,
+  "hidden": false,
+  "createdAt": "2026-08-20T12:00:00.000Z",
+  "updatedAt": "2026-08-20T12:00:00.000Z"
+}

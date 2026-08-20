@@ -1,0 +1,98 @@
+{
+  "id": "builtin-tortoise-and-hare",
+  "slug": "tortoise-and-hare",
+  "title": "The Tortoise and the Hare",
+  "authors": [
+    "After Aesop, retold for Storytime Library"
+  ],
+  "illustrators": [
+    "Storytime Library placeholder art"
+  ],
+  "translators": [],
+  "description": "A boastful hare, a steady tortoise, and one unforgettable race. This retelling of Aesop's fable includes demonstration narration on every page.",
+  "language": "en",
+  "ageRange": "3-5",
+  "readingLevel": "pre-reader",
+  "estimatedMinutes": 3,
+  "categories": [
+    "short-reads",
+    "classics",
+    "animals",
+    "funny"
+  ],
+  "tags": [
+    "aesop",
+    "fable",
+    "race",
+    "patience"
+  ],
+  "cover": "stories/tortoise-and-hare/cover.svg",
+  "pages": [
+    {
+      "number": 1,
+      "image": "stories/tortoise-and-hare/pages/01.svg",
+      "alt": "A lilac hare bounces on a sunny hill while a green tortoise walks slowly below.",
+      "text": "Hare was the fastest animal on the whole hillside, and he never let anyone forget it. “Slow-poke!” he teased Tortoise. “Shall we race?” Tortoise blinked. “Yes,” she said. “Let's.”",
+      "audio": "stories/tortoise-and-hare/audio/01.mp3"
+    },
+    {
+      "number": 2,
+      "image": "stories/tortoise-and-hare/pages/02.svg",
+      "alt": "A fox stands by a wooden signpost as the tortoise and hare line up to race.",
+      "text": "Fox drew a starting line in the dust. “To the old signpost and no shortcuts,” said Fox. “Ready… steady… GO!”",
+      "audio": "stories/tortoise-and-hare/audio/02.mp3"
+    },
+    {
+      "number": 3,
+      "image": "stories/tortoise-and-hare/pages/03.svg",
+      "alt": "The hare zooms far ahead along a winding path, leaving the tortoise behind.",
+      "text": "Whoosh! Hare shot down the path like an arrow. Tortoise took one step. Then another. Then another, just the same as the last.",
+      "audio": "stories/tortoise-and-hare/audio/03.mp3"
+    },
+    {
+      "number": 4,
+      "image": "stories/tortoise-and-hare/pages/04.svg",
+      "alt": "The hare naps under a leafy tree in the afternoon sun while the tortoise keeps walking.",
+      "text": "Halfway there, Hare looked back. Tortoise was a tiny dot. “Plenty of time for a nap,” Hare yawned, and he curled up in the warm shade. Step… step… step went Tortoise.",
+      "audio": "stories/tortoise-and-hare/audio/04.mp3"
+    },
+    {
+      "number": 5,
+      "image": "stories/tortoise-and-hare/pages/05.svg",
+      "alt": "The tortoise nears the finish flag while the hare wakes up far behind.",
+      "text": "When Hare woke, the sun was low — and Tortoise was three steps from the signpost! Hare ran faster than he had ever run, but steady little Tortoise crossed the line first.",
+      "audio": "stories/tortoise-and-hare/audio/05.mp3"
+    },
+    {
+      "number": 6,
+      "image": "stories/tortoise-and-hare/pages/06.svg",
+      "alt": "The tortoise smiles surrounded by celebration stars while the hare claps.",
+      "text": "“You won!” panted Hare. “How?” Tortoise smiled her slow, kind smile. “Steady steps get there,” she said. And from that day on, Hare cheered the loudest for her. Slow and steady wins the race.",
+      "audio": "stories/tortoise-and-hare/audio/06.mp3"
+    }
+  ],
+  "narration": {
+    "voiceLabel": "Demonstration narration",
+    "synthetic": true,
+    "autoAdvance": false
+  },
+  "rights": {
+    "status": "original",
+    "publicDomainBasis": "Fable attributed to Aesop (ancient Greece); this text is an original retelling written for this project.",
+    "sourceOfFiles": "Created for the Storytime Library project.",
+    "remoteStorageAllowed": true,
+    "personalUseOnly": false,
+    "modificationAllowed": true,
+    "commercialUseAllowed": false,
+    "notes": "Illustrations are original project-created placeholder artwork. Narration audio is computer-generated for demonstration."
+  },
+  "source": "Original retelling of Aesop's fable, written and illustrated for Storytime Library.",
+  "attribution": "Retold and illustrated for Storytime Library (placeholder artwork; synthetic demo narration).",
+  "rightsCheckedAt": "2026-08-20T12:00:00.000Z",
+  "storageLocation": "builtin",
+  "offlineStatus": "available",
+  "featured": true,
+  "hidden": false,
+  "createdAt": "2026-08-20T12:00:00.000Z",
+  "updatedAt": "2026-08-20T12:00:00.000Z"
+}

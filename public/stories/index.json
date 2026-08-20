@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "books": [
+    "stories/three-little-pigs/story.json",
+    "stories/goldilocks/story.json",
+    "stories/gingerbread-man/story.json",
+    "stories/billy-goats-gruff/story.json",
+    "stories/tortoise-and-hare/story.json",
+    "stories/star-coins/story.json"
+  ]
+}

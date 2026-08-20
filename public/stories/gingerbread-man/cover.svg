@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1600" role="img">
+<rect x="0" y="0" width="1200" height="1600" rx="0" fill="#f9d9a6"/>
+<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#f9d9a6"/><stop offset="1" stop-color="#fbeed3"/>
+  </linearGradient></defs><rect x="0" y="0" width="1200" height="1600" rx="0" fill="url(#sky)"/>
+<circle cx="220" cy="240" r="116" fill="rgba(255,214,120,0.35)"/><circle cx="220" cy="240" r="90" fill="#ffd678"/>
+<path d="M0 950 Q 360 790 744 950 T 1200 890 V1600 H0 Z" fill="#8fb97f" /><path d="M0 1080 Q 504 910 1200 1060 V1600 H0 Z" fill="#5d8f57" />
+<g transform="translate(600 1150) rotate(-8) scale(1.6)"><ellipse cx="-34" cy="96" rx="22" ry="44" fill="#b5773d"/><ellipse cx="34" cy="96" rx="22" ry="44" fill="#b5773d"/><ellipse cx="-62" cy="6" rx="40" ry="20" fill="#b5773d"/><ellipse cx="62" cy="6" rx="40" ry="20" fill="#b5773d"/><ellipse cx="0" cy="30" rx="52" ry="70" fill="#b5773d"/><circle cx="0" cy="-60" r="52" fill="#b5773d"/><path d="M-30 -78 Q0 -96 30 -78" fill="none" stroke="#fff6ec" stroke-width="8" stroke-linecap="round"/><circle cx="-18" cy="-62" r="7" fill="#4a3221"/><circle cx="18" cy="-62" r="7" fill="#4a3221"/><path d="M-16 -40 Q0 -26 16 -40" fill="none" stroke="#4a3221" stroke-width="6" stroke-linecap="round"/><circle cx="0" cy="4" r="8" fill="#e2555f"/><circle cx="0" cy="38" r="8" fill="#e2555f"/><path d="M-96 6 h24 M72 6 h24" fill="none" stroke="#fff6ec" stroke-width="8" stroke-linecap="round"/></g>
+<path d="M240 1480 q6 -34 14 0 q8 -26 16 0 q8 -34 16 0 z" fill="#5d8f57" />
+<path d="M940 1500 q6 -34 14 0 q8 -26 16 0 q8 -34 16 0 z" fill="#5d8f57" />
+<g transform="translate(140 1500)"><rect x="-3" y="0" width="6" height="40" rx="3" fill="#5d8f57"/><circle cx="0" cy="-6" r="14" fill="#e2555f"/><circle cx="0" cy="-6" r="6" fill="#ffd678"/></g>
+<g transform="translate(1060 1470)"><rect x="-3" y="0" width="6" height="40" rx="3" fill="#5d8f57"/><circle cx="0" cy="-6" r="14" fill="#c9a8e0"/><circle cx="0" cy="-6" r="6" fill="#ffd678"/></g>
+<rect x="80" y="120" width="1040" height="240" rx="32" fill="rgba(255,250,241,0.94)"/>
+<text x="600" y="225" text-anchor="middle" font-family="'Baloo 2', 'Trebuchet MS', sans-serif" font-weight="800" font-size="86" fill="#2c2547">The Gingerbread Man</text>
+<text x="600" y="310" text-anchor="middle" font-family="'Nunito', sans-serif" font-size="44" fill="#57506e">A Storytime Library retelling</text>
+</svg>

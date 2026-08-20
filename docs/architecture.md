@@ -19,14 +19,47 @@
 - **pdfjs-dist** (lazy-loaded, admin-only chunk), **fflate** (ZIP/CBZ +
   backups), **MiniSearch** (typo-tolerant search).
 
-## Two content tiers
+## Three content tiers
 
-| | Built-in demo books | Imported private books |
-| --- | --- | --- |
-| Where | `public/stories/` (static files, precached) | IndexedDB on the device |
-| Rights | Public-domain/original only, audited at build time | Owner-supplied, recorded per book, never audited onto the host |
-| Offline | Precached at install | Inherently offline (local blobs) |
-| Asset refs | `stories/<slug>/…` | `idb:<uuid>` |
+| | Demo stories | Public-domain classics | Imported private books |
+| --- | --- | --- | --- |
+| Where | `public/stories/` | `public/library/` | IndexedDB on the device |
+| Rights | Original to this project | Public domain, audited at build time | Owner-supplied, never leaves the device |
+| Offline | Precached at install | Cached on first read; "Save for offline" pins a book | Inherently offline (local blobs) |
+| Asset refs | `stories/<slug>/…` | `library/<slug>/…` | `idb:<uuid>` |
+
+Splitting the demos from the classics is what keeps installation small: the
+demo collection is a couple of megabytes and precaches, so a freshly installed
+app is readable with no network, while the ~56 MB of classics arrive as they
+are opened.
+
+## The library index
+
+Shelves, search and filters run on **summaries**, not whole books. A book's
+pages are fetched only when it is opened (`useFullBook`), because the library
+now holds ~19,000 pages and several books are megabytes of text on their own —
+loading everything at start-up would make the app unusable.
+
+- `public/stories/index.json` (`version: 2`) holds one `BookSummary` per book:
+  identity, cover, categories, `pageCount`, `hasRecordedNarration`, rights
+  status and the `path` to the full story.
+- `scripts/books/emit.ts#buildIndex` regenerates it from whatever `story.json`
+  files exist on disk, so index and content cannot drift apart. The rights
+  audit additionally cross-checks id, slug, page count and rights status.
+
+## Page kinds
+
+`layout.kind` distinguishes the two ways a page reads:
+
+- **`picture`** — artwork leads and fills the screen, as a plate filled a page
+  in the printed book. `image` is required.
+- **`text`** — prose fills the page, optionally under a chapter header
+  ornament. `text` is required, `image` optional.
+
+Chapter headers and tailpieces are classified at import time
+(`scripts/books/images.ts#classifyImage`) and attached above the text they
+decorate instead of taking a page of their own, which is where they sat in the
+original books.
 
 `src/lib/library.ts` merges the tiers into one library. An imported book with
 the same id as a built-in **shadows** it — that's how "editing" a built-in

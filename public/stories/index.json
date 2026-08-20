@@ -1,11 +1,1625 @@
 {
-  "version": 1,
+  "version": 2,
   "books": [
-    "stories/three-little-pigs/story.json",
-    "stories/goldilocks/story.json",
-    "stories/gingerbread-man/story.json",
-    "stories/billy-goats-gruff/story.json",
-    "stories/tortoise-and-hare/story.json",
-    "stories/star-coins/story.json"
+    {
+      "id": "pd-a-apple-pie",
+      "slug": "a-apple-pie",
+      "path": "library/a-apple-pie/story.json",
+      "title": "A Apple Pie",
+      "authors": [
+        "Kate Greenaway"
+      ],
+      "illustrators": [
+        "Kate Greenaway"
+      ],
+      "translators": [],
+      "description": "Kate Greenaway’s alphabet picture book — A was an apple pie, and every letter after it brings another crowd of children to the table.",
+      "language": "en",
+      "ageRange": "3-5",
+      "readingLevel": "pre-reader",
+      "estimatedMinutes": 3,
+      "categories": [
+        "picture-books",
+        "poetry-rhymes",
+        "short-reads"
+      ],
+      "tags": [
+        "alphabet",
+        "kate greenaway",
+        "rhymes"
+      ],
+      "cover": "library/a-apple-pie/cover.webp",
+      "thumbnail": "library/a-apple-pie/thumbnail.webp",
+      "pageCount": 23,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1886 edition; illustrations by Kate Greenaway. Public domain; retrieved from Project Gutenberg ebook #15809.",
+      "attribution": "Kate Greenaway, illustrated by Kate Greenaway.",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-a-book-of-nonsense",
+      "slug": "a-book-of-nonsense",
+      "path": "library/a-book-of-nonsense/story.json",
+      "title": "A Book of Nonsense",
+      "authors": [
+        "Edward Lear"
+      ],
+      "illustrators": [
+        "Edward Lear"
+      ],
+      "translators": [],
+      "description": "Edward Lear’s limericks with his own scratchy, joyful drawings. There was an Old Man with a beard… and a hundred more.",
+      "language": "en",
+      "ageRange": "all-ages",
+      "readingLevel": "early-reader",
+      "estimatedMinutes": 34,
+      "categories": [
+        "poetry-rhymes",
+        "funny",
+        "picture-books",
+        "classics"
+      ],
+      "tags": [
+        "nonsense",
+        "limericks",
+        "edward lear"
+      ],
+      "cover": "library/a-book-of-nonsense/cover.webp",
+      "thumbnail": "library/a-book-of-nonsense/thumbnail.webp",
+      "pageCount": 140,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1894 edition; illustrations by Edward Lear. Public domain; retrieved from Project Gutenberg ebook #13646.",
+      "attribution": "Edward Lear, illustrated by Edward Lear.",
+      "featured": true,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-a-childs-garden-of-verses",
+      "slug": "a-childs-garden-of-verses",
+      "path": "library/a-childs-garden-of-verses/story.json",
+      "title": "A Child's Garden of Verses",
+      "authors": [
+        "Robert Louis Stevenson"
+      ],
+      "illustrators": [
+        "Jessie Willcox Smith"
+      ],
+      "translators": [],
+      "description": "Stevenson’s poems of childhood — bed in summer, the swing, the lamplighter — with Jessie Willcox Smith’s golden illustrations.",
+      "language": "en",
+      "ageRange": "all-ages",
+      "readingLevel": "early-reader",
+      "estimatedMinutes": 13,
+      "categories": [
+        "poetry-rhymes",
+        "bedtime",
+        "classics",
+        "picture-books"
+      ],
+      "tags": [
+        "poetry",
+        "bedtime",
+        "stevenson"
+      ],
+      "cover": "library/a-childs-garden-of-verses/cover.webp",
+      "thumbnail": "library/a-childs-garden-of-verses/thumbnail.webp",
+      "pageCount": 157,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1905 edition; illustrations by Jessie Willcox Smith. Public domain; retrieved from Project Gutenberg ebook #25609.",
+      "attribution": "Robert Louis Stevenson, illustrated by Jessie Willcox Smith.",
+      "featured": true,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-alice-in-wonderland",
+      "slug": "alice-in-wonderland",
+      "path": "library/alice-in-wonderland/story.json",
+      "title": "Alice's Adventures in Wonderland",
+      "authors": [
+        "Lewis Carroll"
+      ],
+      "illustrators": [
+        "John Tenniel"
+      ],
+      "translators": [],
+      "description": "Down the rabbit-hole with Alice, in the edition with John Tenniel’s original engravings — the White Rabbit, the Mad Tea-Party and the Queen of Hearts as they were first drawn.",
+      "language": "en",
+      "ageRange": "6-10",
+      "readingLevel": "independent",
+      "estimatedMinutes": 63,
+      "categories": [
+        "classics",
+        "adventure",
+        "chapter-books",
+        "funny"
+      ],
+      "tags": [
+        "alice",
+        "tenniel",
+        "wonderland"
+      ],
+      "cover": "library/alice-in-wonderland/cover.webp",
+      "thumbnail": "library/alice-in-wonderland/thumbnail.webp",
+      "pageCount": 97,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1865 edition; illustrations by John Tenniel. Public domain; retrieved from Project Gutenberg ebook #19033.",
+      "attribution": "Lewis Carroll, illustrated by John Tenniel.",
+      "featured": true,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-andersens-fairy-tales",
+      "slug": "andersens-fairy-tales",
+      "path": "library/andersens-fairy-tales/story.json",
+      "title": "Andersen's Fairy Tales",
+      "authors": [
+        "Hans Christian Andersen"
+      ],
+      "illustrators": [
+        "Cover created for Storytime Library (source edition has no illustrations)"
+      ],
+      "translators": [],
+      "description": "The Little Mermaid, The Ugly Duckling, The Emperor’s New Clothes and more, from the master of the literary fairy tale.",
+      "language": "en",
+      "ageRange": "4-8",
+      "readingLevel": "early-reader",
+      "estimatedMinutes": 342,
+      "categories": [
+        "andersen",
+        "fairy-tales",
+        "classics",
+        "bedtime"
+      ],
+      "tags": [
+        "andersen",
+        "fairy tales"
+      ],
+      "cover": "library/andersens-fairy-tales/cover.svg",
+      "pageCount": 408,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1872 edition. Public domain; retrieved from Project Gutenberg ebook #1597.",
+      "attribution": "Hans Christian Andersen.",
+      "featured": true,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-anne-of-green-gables",
+      "slug": "anne-of-green-gables",
+      "path": "library/anne-of-green-gables/story.json",
+      "title": "Anne of Green Gables",
+      "authors": [
+        "L. M. Montgomery"
+      ],
+      "illustrators": [
+        "Cover created for Storytime Library (source edition has no illustrations)"
+      ],
+      "translators": [],
+      "description": "Matthew and Marilla asked for a boy and got Anne Shirley instead — talkative, red-haired and entirely unstoppable.",
+      "language": "en",
+      "ageRange": "6-10",
+      "readingLevel": "independent",
+      "estimatedMinutes": 636,
+      "categories": [
+        "classics",
+        "chapter-books"
+      ],
+      "tags": [
+        "montgomery",
+        "prince edward island"
+      ],
+      "cover": "library/anne-of-green-gables/cover.svg",
+      "pageCount": 765,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1908 edition. Public domain; retrieved from Project Gutenberg ebook #45.",
+      "attribution": "L. M. Montgomery.",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-at-the-back-of-the-north-wind",
+      "slug": "at-the-back-of-the-north-wind",
+      "path": "library/at-the-back-of-the-north-wind/story.json",
+      "title": "At the Back of the North Wind",
+      "authors": [
+        "George MacDonald"
+      ],
+      "illustrators": [
+        "Cover created for Storytime Library (source edition has no illustrations)"
+      ],
+      "translators": [],
+      "description": "A cabman’s son named Diamond is carried through the night sky by the North Wind herself.",
+      "language": "en",
+      "ageRange": "6-10",
+      "readingLevel": "independent",
+      "estimatedMinutes": 533,
+      "categories": [
+        "classics",
+        "bedtime",
+        "fairy-tales",
+        "chapter-books"
+      ],
+      "tags": [
+        "macdonald",
+        "dream"
+      ],
+      "cover": "library/at-the-back-of-the-north-wind/cover.svg",
+      "pageCount": 578,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1871 edition. Public domain; retrieved from Project Gutenberg ebook #225.",
+      "attribution": "George MacDonald.",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-black-beauty",
+      "slug": "black-beauty",
+      "path": "library/black-beauty/story.json",
+      "title": "Black Beauty",
+      "authors": [
+        "Anna Sewell"
+      ],
+      "illustrators": [
+        "Cover created for Storytime Library (source edition has no illustrations)"
+      ],
+      "translators": [],
+      "description": "A horse tells his own life story, from a green meadow to the London cab ranks and home again.",
+      "language": "en",
+      "ageRange": "6-10",
+      "readingLevel": "independent",
+      "estimatedMinutes": 371,
+      "categories": [
+        "classics",
+        "animals",
+        "chapter-books"
+      ],
+      "tags": [
+        "horses",
+        "sewell"
+      ],
+      "cover": "library/black-beauty/cover.svg",
+      "pageCount": 420,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1877 edition. Public domain; retrieved from Project Gutenberg ebook #271.",
+      "attribution": "Anna Sewell.",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-english-fairy-tales",
+      "slug": "english-fairy-tales",
+      "path": "library/english-fairy-tales/story.json",
+      "title": "English Fairy Tales",
+      "authors": [
+        "Joseph Jacobs"
+      ],
+      "illustrators": [
+        "Cover created for Storytime Library (source edition has no illustrations)"
+      ],
+      "translators": [],
+      "description": "Jack and the Beanstalk, The Three Little Pigs, Tom Thumb and Henny-Penny, as collected by Joseph Jacobs.",
+      "language": "en",
+      "ageRange": "4-8",
+      "readingLevel": "early-reader",
+      "estimatedMinutes": 367,
+      "categories": [
+        "folk-tales",
+        "fairy-tales",
+        "classics"
+      ],
+      "tags": [
+        "england",
+        "folk tales",
+        "jacobs"
+      ],
+      "cover": "library/english-fairy-tales/cover.svg",
+      "pageCount": 448,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1890 edition. Public domain; retrieved from Project Gutenberg ebook #7439.",
+      "attribution": "Joseph Jacobs.",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-fairy-tales-of-hans-christian-andersen",
+      "slug": "fairy-tales-of-hans-christian-andersen",
+      "path": "library/fairy-tales-of-hans-christian-andersen/story.json",
+      "title": "Fairy Tales of Hans Christian Andersen",
+      "authors": [
+        "Hans Christian Andersen"
+      ],
+      "illustrators": [
+        "Cover created for Storytime Library (source edition has no illustrations)"
+      ],
+      "translators": [],
+      "description": "A second, larger gathering of Andersen’s tales for a long winter of bedtimes.",
+      "language": "en",
+      "ageRange": "4-8",
+      "readingLevel": "early-reader",
+      "estimatedMinutes": 2313,
+      "categories": [
+        "andersen",
+        "fairy-tales",
+        "classics",
+        "bedtime"
+      ],
+      "tags": [
+        "andersen",
+        "fairy tales"
+      ],
+      "cover": "library/fairy-tales-of-hans-christian-andersen/cover.svg",
+      "pageCount": 2703,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1914 edition. Public domain; retrieved from Project Gutenberg ebook #27200.",
+      "attribution": "Hans Christian Andersen.",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "builtin-goldilocks",
+      "slug": "goldilocks",
+      "path": "stories/goldilocks/story.json",
+      "title": "Goldilocks and the Three Bears",
+      "authors": [
+        "Traditional, retold for Storytime Library"
+      ],
+      "illustrators": [
+        "Storytime Library placeholder art"
+      ],
+      "translators": [],
+      "description": "A curious girl finds a cottage in the woods — with porridge, chairs and beds that belong to somebody else. A gentle retelling of the beloved tale.",
+      "language": "en",
+      "ageRange": "3-5",
+      "readingLevel": "pre-reader",
+      "estimatedMinutes": 5,
+      "categories": [
+        "fairy-tales",
+        "classics",
+        "bedtime"
+      ],
+      "tags": [
+        "bears",
+        "porridge",
+        "forest",
+        "classic"
+      ],
+      "cover": "stories/goldilocks/cover.svg",
+      "pageCount": 8,
+      "hasRecordedNarration": false,
+      "rightsStatus": "original",
+      "source": "Original retelling of the traditional English tale, written and illustrated for Storytime Library.",
+      "attribution": "Retold and illustrated for Storytime Library (placeholder artwork).",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T12:00:00.000Z",
+      "updatedAt": "2026-08-20T12:00:00.000Z"
+    },
+    {
+      "id": "pd-grimms-fairy-stories",
+      "slug": "grimms-fairy-stories",
+      "path": "library/grimms-fairy-stories/story.json",
+      "title": "Grimm's Fairy Stories",
+      "authors": [
+        "Jacob Grimm",
+        "Wilhelm Grimm"
+      ],
+      "illustrators": [
+        "John B Gruelle",
+        "R. Emmett Owen"
+      ],
+      "translators": [],
+      "description": "A generously illustrated early-twentieth-century selection of Grimm tales, including The Goose-Girl, Rumpelstiltskin and The Frog Prince.",
+      "language": "en",
+      "ageRange": "4-8",
+      "readingLevel": "early-reader",
+      "estimatedMinutes": 320,
+      "categories": [
+        "brothers-grimm",
+        "fairy-tales",
+        "classics",
+        "picture-books"
+      ],
+      "tags": [
+        "grimm",
+        "fairy tales",
+        "illustrated"
+      ],
+      "cover": "library/grimms-fairy-stories/cover.webp",
+      "thumbnail": "library/grimms-fairy-stories/thumbnail.webp",
+      "pageCount": 416,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1922 edition; illustrations by John B Gruelle, R. Emmett Owen. Public domain; retrieved from Project Gutenberg ebook #11027.",
+      "attribution": "Jacob Grimm, Wilhelm Grimm, illustrated by John B Gruelle, R. Emmett Owen.",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-household-stories-grimm",
+      "slug": "household-stories-grimm",
+      "path": "library/household-stories-grimm/story.json",
+      "title": "Household Stories by the Brothers Grimm",
+      "authors": [
+        "Jacob Grimm",
+        "Wilhelm Grimm"
+      ],
+      "illustrators": [
+        "Walter Crane"
+      ],
+      "translators": [
+        "Lucy Crane"
+      ],
+      "description": "The Grimms’ own collection of household tales in Lucy Crane’s translation, with Walter Crane’s celebrated line illustrations — Snow-White, Rapunzel, Hansel and Gretel, The Bremen Town Musicians and dozens more.",
+      "language": "en",
+      "ageRange": "4-8",
+      "readingLevel": "early-reader",
+      "estimatedMinutes": 210,
+      "categories": [
+        "brothers-grimm",
+        "fairy-tales",
+        "classics",
+        "picture-books"
+      ],
+      "tags": [
+        "grimm",
+        "walter crane",
+        "fairy tales",
+        "illustrated"
+      ],
+      "cover": "library/household-stories-grimm/cover.webp",
+      "thumbnail": "library/household-stories-grimm/thumbnail.webp",
+      "pageCount": 290,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1882 edition; illustrations by Walter Crane. Public domain; retrieved from Project Gutenberg ebook #19068.",
+      "attribution": "Jacob Grimm, Wilhelm Grimm, translated by Lucy Crane, illustrated by Walter Crane.",
+      "featured": true,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-indian-fairy-tales",
+      "slug": "indian-fairy-tales",
+      "path": "library/indian-fairy-tales/story.json",
+      "title": "Indian Fairy Tales",
+      "authors": [
+        "Joseph Jacobs"
+      ],
+      "illustrators": [
+        "John D. Batten",
+        "Gloria Cardew"
+      ],
+      "translators": [],
+      "description": "Folk tales from India retold by Joseph Jacobs, with John D. Batten’s illustrations — including the Panchatantra stories that travelled the world.",
+      "language": "en",
+      "ageRange": "4-8",
+      "readingLevel": "early-reader",
+      "estimatedMinutes": 441,
+      "categories": [
+        "folk-tales",
+        "fairy-tales",
+        "classics"
+      ],
+      "tags": [
+        "india",
+        "folk tales",
+        "jacobs"
+      ],
+      "cover": "library/indian-fairy-tales/cover.webp",
+      "thumbnail": "library/indian-fairy-tales/thumbnail.webp",
+      "pageCount": 578,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1892 edition; illustrations by John D. Batten, Gloria Cardew. Public domain; retrieved from Project Gutenberg ebook #7128.",
+      "attribution": "Joseph Jacobs, illustrated by John D. Batten, Gloria Cardew.",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-just-so-stories",
+      "slug": "just-so-stories",
+      "path": "library/just-so-stories/story.json",
+      "title": "Just So Stories",
+      "authors": [
+        "Rudyard Kipling"
+      ],
+      "illustrators": [
+        "Cover created for Storytime Library (source edition has no illustrations)"
+      ],
+      "translators": [],
+      "description": "How the Camel got his Hump, how the Elephant’s Child got his trunk, and how the Alphabet was made — read them aloud.",
+      "language": "en",
+      "ageRange": "4-8",
+      "readingLevel": "early-reader",
+      "estimatedMinutes": 169,
+      "categories": [
+        "classics",
+        "animals",
+        "funny",
+        "bedtime"
+      ],
+      "tags": [
+        "kipling",
+        "read aloud"
+      ],
+      "cover": "library/just-so-stories/cover.svg",
+      "pageCount": 196,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1902 edition. Public domain; retrieved from Project Gutenberg ebook #2781.",
+      "attribution": "Rudyard Kipling.",
+      "featured": true,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-little-lord-fauntleroy",
+      "slug": "little-lord-fauntleroy",
+      "path": "library/little-lord-fauntleroy/story.json",
+      "title": "Little Lord Fauntleroy",
+      "authors": [
+        "Frances Hodgson Burnett"
+      ],
+      "illustrators": [
+        "Cover created for Storytime Library (source edition has no illustrations)"
+      ],
+      "translators": [],
+      "description": "A kind-hearted boy from New York discovers he is heir to an English earldom, and thaws a very cold grandfather.",
+      "language": "en",
+      "ageRange": "6-10",
+      "readingLevel": "independent",
+      "estimatedMinutes": 364,
+      "categories": [
+        "classics",
+        "chapter-books"
+      ],
+      "tags": [
+        "burnett"
+      ],
+      "cover": "library/little-lord-fauntleroy/cover.svg",
+      "pageCount": 428,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1886 edition. Public domain; retrieved from Project Gutenberg ebook #479.",
+      "attribution": "Frances Hodgson Burnett.",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-little-women",
+      "slug": "little-women",
+      "path": "library/little-women/story.json",
+      "title": "Little Women",
+      "authors": [
+        "Louisa May Alcott"
+      ],
+      "illustrators": [
+        "Cover created for Storytime Library (source edition has no illustrations)"
+      ],
+      "translators": [],
+      "description": "Meg, Jo, Beth and Amy March grow up through one hard winter and many years after it.",
+      "language": "en",
+      "ageRange": "6-10",
+      "readingLevel": "independent",
+      "estimatedMinutes": 1150,
+      "categories": [
+        "classics",
+        "chapter-books"
+      ],
+      "tags": [
+        "alcott",
+        "sisters"
+      ],
+      "cover": "library/little-women/cover.svg",
+      "pageCount": 1337,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1868 edition. Public domain; retrieved from Project Gutenberg ebook #514.",
+      "attribution": "Louisa May Alcott.",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-peter-pan",
+      "slug": "peter-pan",
+      "path": "library/peter-pan/story.json",
+      "title": "Peter Pan",
+      "authors": [
+        "J. M. Barrie"
+      ],
+      "illustrators": [
+        "Cover created for Storytime Library (source edition has no illustrations)"
+      ],
+      "translators": [],
+      "description": "Peter and Wendy, the flight to Neverland, and Captain Hook’s crocodile.",
+      "language": "en",
+      "ageRange": "6-10",
+      "readingLevel": "independent",
+      "estimatedMinutes": 294,
+      "categories": [
+        "classics",
+        "adventure",
+        "chapter-books"
+      ],
+      "tags": [
+        "barrie",
+        "neverland"
+      ],
+      "cover": "library/peter-pan/cover.svg",
+      "pageCount": 339,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "contentAdvisory": "The 1911 text depicts Native American characters with slurs and caricature. It is kept unedited but hidden from the library, so you can decide whether and when to share it.",
+      "source": "Text of the 1911 edition. Public domain; retrieved from Project Gutenberg ebook #16.",
+      "attribution": "J. M. Barrie.",
+      "featured": false,
+      "hidden": true,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-peter-pan-in-kensington-gardens",
+      "slug": "peter-pan-in-kensington-gardens",
+      "path": "library/peter-pan-in-kensington-gardens/story.json",
+      "title": "Peter Pan in Kensington Gardens",
+      "authors": [
+        "J. M. Barrie"
+      ],
+      "illustrators": [
+        "Arthur Rackham"
+      ],
+      "translators": [],
+      "description": "The earlier, gentler Peter Pan story: a week-old baby flies out of the nursery window to live among the birds and fairies of Kensington Gardens.",
+      "language": "en",
+      "ageRange": "6-10",
+      "readingLevel": "independent",
+      "estimatedMinutes": 136,
+      "categories": [
+        "classics",
+        "bedtime",
+        "chapter-books"
+      ],
+      "tags": [
+        "barrie",
+        "fairies"
+      ],
+      "cover": "library/peter-pan-in-kensington-gardens/cover.svg",
+      "pageCount": 160,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1906 edition; illustrations by Arthur Rackham. Public domain; retrieved from Project Gutenberg ebook #26999.",
+      "attribution": "J. M. Barrie, illustrated by Arthur Rackham.",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-tanglewood-tales",
+      "slug": "tanglewood-tales",
+      "path": "library/tanglewood-tales/story.json",
+      "title": "Tanglewood Tales",
+      "authors": [
+        "Nathaniel Hawthorne"
+      ],
+      "illustrators": [
+        "Cover created for Storytime Library (source edition has no illustrations)"
+      ],
+      "translators": [],
+      "description": "Greek myths retold for children — the Minotaur, the dragon’s teeth, and the pomegranate seeds.",
+      "language": "en",
+      "ageRange": "6-10",
+      "readingLevel": "independent",
+      "estimatedMinutes": 409,
+      "categories": [
+        "folk-tales",
+        "classics",
+        "adventure",
+        "chapter-books"
+      ],
+      "tags": [
+        "myths",
+        "greek",
+        "hawthorne"
+      ],
+      "cover": "library/tanglewood-tales/cover.svg",
+      "pageCount": 480,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1853 edition. Public domain; retrieved from Project Gutenberg ebook #976.",
+      "attribution": "Nathaniel Hawthorne.",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-the-adventures-of-pinocchio",
+      "slug": "the-adventures-of-pinocchio",
+      "path": "library/the-adventures-of-pinocchio/story.json",
+      "title": "The Adventures of Pinocchio",
+      "authors": [
+        "Carlo Collodi"
+      ],
+      "illustrators": [
+        "Cover created for Storytime Library (source edition has no illustrations)"
+      ],
+      "translators": [],
+      "description": "A puppet who will not behave, a nose that will not stay put, and a very long road to becoming a real boy.",
+      "language": "en",
+      "ageRange": "6-10",
+      "readingLevel": "independent",
+      "estimatedMinutes": 248,
+      "categories": [
+        "classics",
+        "fairy-tales",
+        "chapter-books"
+      ],
+      "tags": [
+        "collodi",
+        "puppet"
+      ],
+      "cover": "library/the-adventures-of-pinocchio/cover.svg",
+      "pageCount": 279,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1883 edition. Public domain; retrieved from Project Gutenberg ebook #500.",
+      "attribution": "Carlo Collodi.",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-the-adventures-of-tom-sawyer",
+      "slug": "the-adventures-of-tom-sawyer",
+      "path": "library/the-adventures-of-tom-sawyer/story.json",
+      "title": "The Adventures of Tom Sawyer",
+      "authors": [
+        "Mark Twain"
+      ],
+      "illustrators": [
+        "True Williams"
+      ],
+      "translators": [],
+      "description": "Whitewashing the fence, the graveyard at midnight, and a funeral the boys attend as mourners for themselves.",
+      "language": "en",
+      "ageRange": "6-10",
+      "readingLevel": "independent",
+      "estimatedMinutes": 453,
+      "categories": [
+        "classics",
+        "adventure",
+        "chapter-books"
+      ],
+      "tags": [
+        "twain",
+        "mississippi"
+      ],
+      "cover": "library/the-adventures-of-tom-sawyer/cover.webp",
+      "thumbnail": "library/the-adventures-of-tom-sawyer/thumbnail.webp",
+      "pageCount": 706,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "contentAdvisory": "The unabridged 1876 text contains racial slurs and period racial attitudes. It is kept unedited but hidden from the library, so you can decide whether and when to share it.",
+      "source": "Text of the 1876 edition; illustrations by True Williams. Public domain; retrieved from Project Gutenberg ebook #74.",
+      "attribution": "Mark Twain, illustrated by True Williams.",
+      "featured": false,
+      "hidden": true,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-the-blue-fairy-book",
+      "slug": "the-blue-fairy-book",
+      "path": "library/the-blue-fairy-book/story.json",
+      "title": "The Blue Fairy Book",
+      "authors": [
+        "Andrew Lang"
+      ],
+      "illustrators": [
+        "Cover created for Storytime Library (source edition has no illustrations)"
+      ],
+      "translators": [],
+      "description": "The first of Lang’s coloured fairy books: Cinderella, Beauty and the Beast, Aladdin and Jack the Giant-Killer.",
+      "language": "en",
+      "ageRange": "4-8",
+      "readingLevel": "early-reader",
+      "estimatedMinutes": 856,
+      "categories": [
+        "fairy-tales",
+        "classics",
+        "chapter-books"
+      ],
+      "tags": [
+        "andrew lang",
+        "fairy tales"
+      ],
+      "cover": "library/the-blue-fairy-book/cover.svg",
+      "pageCount": 973,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1889 edition. Public domain; retrieved from Project Gutenberg ebook #503.",
+      "attribution": "Andrew Lang.",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "builtin-gingerbread-man",
+      "slug": "gingerbread-man",
+      "path": "stories/gingerbread-man/story.json",
+      "title": "The Gingerbread Man",
+      "authors": [
+        "Traditional, retold for Storytime Library"
+      ],
+      "illustrators": [
+        "Storytime Library placeholder art"
+      ],
+      "translators": [],
+      "description": "Fresh from the oven, one very fast cookie leads the whole countryside on a merry chase. A playful retelling of the classic runaway-cookie tale.",
+      "language": "en",
+      "ageRange": "3-5",
+      "readingLevel": "pre-reader",
+      "estimatedMinutes": 4,
+      "categories": [
+        "folk-tales",
+        "funny",
+        "short-reads"
+      ],
+      "tags": [
+        "cookie",
+        "fox",
+        "chase",
+        "classic"
+      ],
+      "cover": "stories/gingerbread-man/cover.svg",
+      "pageCount": 7,
+      "hasRecordedNarration": false,
+      "rightsStatus": "original",
+      "source": "Original retelling of the traditional runaway-cookie folk tale, written and illustrated for Storytime Library.",
+      "attribution": "Retold and illustrated for Storytime Library (placeholder artwork).",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T12:00:00.000Z",
+      "updatedAt": "2026-08-20T12:00:00.000Z"
+    },
+    {
+      "id": "pd-the-green-fairy-book",
+      "slug": "the-green-fairy-book",
+      "path": "library/the-green-fairy-book/story.json",
+      "title": "The Green Fairy Book",
+      "authors": [
+        "Andrew Lang"
+      ],
+      "illustrators": [
+        "H. J. Ford"
+      ],
+      "translators": [],
+      "description": "Andrew Lang’s green volume of fairy tales gathered from across Europe, with H. J. Ford’s intricate illustrations.",
+      "language": "en",
+      "ageRange": "4-8",
+      "readingLevel": "early-reader",
+      "estimatedMinutes": 751,
+      "categories": [
+        "fairy-tales",
+        "classics",
+        "chapter-books"
+      ],
+      "tags": [
+        "andrew lang",
+        "fairy tales",
+        "h j ford"
+      ],
+      "cover": "library/the-green-fairy-book/cover.webp",
+      "thumbnail": "library/the-green-fairy-book/thumbnail.webp",
+      "pageCount": 975,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1892 edition; illustrations by H. J. Ford. Public domain; retrieved from Project Gutenberg ebook #33571.",
+      "attribution": "Andrew Lang, illustrated by H. J. Ford.",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-the-jungle-book",
+      "slug": "the-jungle-book",
+      "path": "library/the-jungle-book/story.json",
+      "title": "The Jungle Book",
+      "authors": [
+        "Rudyard Kipling"
+      ],
+      "illustrators": [
+        "John Lockwood Kipling",
+        "W. H. Drake"
+      ],
+      "translators": [],
+      "description": "Mowgli among the wolves, Rikki-Tikki-Tavi in the garden, and Toomai of the Elephants — Kipling’s jungle stories with the original illustrations.",
+      "language": "en",
+      "ageRange": "6-10",
+      "readingLevel": "independent",
+      "estimatedMinutes": 306,
+      "categories": [
+        "classics",
+        "animals",
+        "adventure",
+        "chapter-books"
+      ],
+      "tags": [
+        "kipling",
+        "mowgli",
+        "jungle"
+      ],
+      "cover": "library/the-jungle-book/cover.webp",
+      "thumbnail": "library/the-jungle-book/thumbnail.webp",
+      "pageCount": 409,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1894 edition; illustrations by John Lockwood Kipling, W. H. Drake. Public domain; retrieved from Project Gutenberg ebook #236.",
+      "attribution": "Rudyard Kipling, illustrated by John Lockwood Kipling, W. H. Drake.",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-the-marvelous-land-of-oz",
+      "slug": "the-marvelous-land-of-oz",
+      "path": "library/the-marvelous-land-of-oz/story.json",
+      "title": "The Marvelous Land of Oz",
+      "authors": [
+        "L. Frank Baum"
+      ],
+      "illustrators": [
+        "Cover created for Storytime Library (source edition has no illustrations)"
+      ],
+      "translators": [],
+      "description": "Tip runs away with a pumpkin-headed man and a sawhorse brought to life, and Oz is turned upside down.",
+      "language": "en",
+      "ageRange": "6-10",
+      "readingLevel": "independent",
+      "estimatedMinutes": 261,
+      "categories": [
+        "classics",
+        "adventure",
+        "chapter-books"
+      ],
+      "tags": [
+        "oz",
+        "baum"
+      ],
+      "cover": "library/the-marvelous-land-of-oz/cover.svg",
+      "pageCount": 312,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1904 edition. Public domain; retrieved from Project Gutenberg ebook #54.",
+      "attribution": "L. Frank Baum.",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-the-princess-and-the-goblin",
+      "slug": "the-princess-and-the-goblin",
+      "path": "library/the-princess-and-the-goblin/story.json",
+      "title": "The Princess and the Goblin",
+      "authors": [
+        "George MacDonald"
+      ],
+      "illustrators": [
+        "Jessie Willcox Smith"
+      ],
+      "translators": [],
+      "description": "Princess Irene finds a mysterious grandmother at the top of the stairs, and a miner’s son named Curdie discovers what the goblins are digging towards.",
+      "language": "en",
+      "ageRange": "6-10",
+      "readingLevel": "independent",
+      "estimatedMinutes": 288,
+      "categories": [
+        "fairy-tales",
+        "adventure",
+        "chapter-books",
+        "classics"
+      ],
+      "tags": [
+        "macdonald",
+        "goblins",
+        "princess"
+      ],
+      "cover": "library/the-princess-and-the-goblin/cover.webp",
+      "thumbnail": "library/the-princess-and-the-goblin/thumbnail.webp",
+      "pageCount": 341,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1920 edition; illustrations by Jessie Willcox Smith. Public domain; retrieved from Project Gutenberg ebook #34339.",
+      "attribution": "George MacDonald, illustrated by Jessie Willcox Smith.",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-the-railway-children",
+      "slug": "the-railway-children",
+      "path": "library/the-railway-children/story.json",
+      "title": "The Railway Children",
+      "authors": [
+        "E. Nesbit"
+      ],
+      "illustrators": [
+        "Cover created for Storytime Library (source edition has no illustrations)"
+      ],
+      "translators": [],
+      "description": "Three children move to a cottage beside the railway line and wave at the 9.15 every morning.",
+      "language": "en",
+      "ageRange": "6-10",
+      "readingLevel": "independent",
+      "estimatedMinutes": 365,
+      "categories": [
+        "classics",
+        "chapter-books"
+      ],
+      "tags": [
+        "nesbit",
+        "trains"
+      ],
+      "cover": "library/the-railway-children/cover.svg",
+      "pageCount": 417,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1906 edition. Public domain; retrieved from Project Gutenberg ebook #1874.",
+      "attribution": "E. Nesbit.",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-the-red-fairy-book",
+      "slug": "the-red-fairy-book",
+      "path": "library/the-red-fairy-book/story.json",
+      "title": "The Red Fairy Book",
+      "authors": [
+        "Andrew Lang"
+      ],
+      "illustrators": [
+        "Cover created for Storytime Library (source edition has no illustrations)"
+      ],
+      "translators": [],
+      "description": "Lang’s red volume — Norse, Russian and French tales, including Rapunzel and Jack and the Beanstalk.",
+      "language": "en",
+      "ageRange": "4-8",
+      "readingLevel": "early-reader",
+      "estimatedMinutes": 773,
+      "categories": [
+        "fairy-tales",
+        "classics",
+        "chapter-books"
+      ],
+      "tags": [
+        "andrew lang",
+        "fairy tales"
+      ],
+      "cover": "library/the-red-fairy-book/cover.svg",
+      "pageCount": 882,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1890 edition. Public domain; retrieved from Project Gutenberg ebook #540.",
+      "attribution": "Andrew Lang.",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-the-second-jungle-book",
+      "slug": "the-second-jungle-book",
+      "path": "library/the-second-jungle-book/story.json",
+      "title": "The Second Jungle Book",
+      "authors": [
+        "Rudyard Kipling"
+      ],
+      "illustrators": [
+        "Cover created for Storytime Library (source edition has no illustrations)"
+      ],
+      "translators": [],
+      "description": "More of Mowgli’s story, plus the Ankus, the white seal’s ocean and Red Dog.",
+      "language": "en",
+      "ageRange": "6-10",
+      "readingLevel": "independent",
+      "estimatedMinutes": 380,
+      "categories": [
+        "classics",
+        "animals",
+        "adventure",
+        "chapter-books"
+      ],
+      "tags": [
+        "kipling",
+        "mowgli"
+      ],
+      "cover": "library/the-second-jungle-book/cover.svg",
+      "pageCount": 443,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1895 edition. Public domain; retrieved from Project Gutenberg ebook #1937.",
+      "attribution": "Rudyard Kipling.",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-the-secret-garden",
+      "slug": "the-secret-garden",
+      "path": "library/the-secret-garden/story.json",
+      "title": "The Secret Garden",
+      "authors": [
+        "Frances Hodgson Burnett"
+      ],
+      "illustrators": [
+        "Cover created for Storytime Library (source edition has no illustrations)"
+      ],
+      "translators": [],
+      "description": "Sour, lonely Mary Lennox finds a key, a walled garden nobody has entered for ten years, and a cousin nobody talks about.",
+      "language": "en",
+      "ageRange": "6-10",
+      "readingLevel": "independent",
+      "estimatedMinutes": 502,
+      "categories": [
+        "classics",
+        "chapter-books"
+      ],
+      "tags": [
+        "garden",
+        "burnett"
+      ],
+      "cover": "library/the-secret-garden/cover.svg",
+      "pageCount": 585,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1911 edition. Public domain; retrieved from Project Gutenberg ebook #113.",
+      "attribution": "Frances Hodgson Burnett.",
+      "featured": true,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "builtin-star-coins",
+      "slug": "star-coins",
+      "path": "stories/star-coins/story.json",
+      "title": "The Star Coins",
+      "authors": [
+        "After the Brothers Grimm, retold for Storytime Library"
+      ],
+      "illustrators": [
+        "Storytime Library placeholder art"
+      ],
+      "translators": [],
+      "description": "A kind girl gives away everything she has — and the night sky gives something wonderful back. A gentle bedtime retelling of the Grimm tale of the star money.",
+      "language": "en",
+      "ageRange": "3-5",
+      "readingLevel": "pre-reader",
+      "estimatedMinutes": 3,
+      "categories": [
+        "brothers-grimm",
+        "fairy-tales",
+        "bedtime",
+        "short-reads"
+      ],
+      "tags": [
+        "grimm",
+        "stars",
+        "kindness",
+        "bedtime"
+      ],
+      "cover": "stories/star-coins/cover.svg",
+      "pageCount": 6,
+      "hasRecordedNarration": false,
+      "rightsStatus": "original",
+      "source": "Original retelling of the tale recorded by Jacob and Wilhelm Grimm, written and illustrated for Storytime Library.",
+      "attribution": "Retold and illustrated for Storytime Library (placeholder artwork).",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T12:00:00.000Z",
+      "updatedAt": "2026-08-20T12:00:00.000Z"
+    },
+    {
+      "id": "pd-tale-of-peter-rabbit",
+      "slug": "tale-of-peter-rabbit",
+      "path": "library/tale-of-peter-rabbit/story.json",
+      "title": "The Tale of Peter Rabbit",
+      "authors": [
+        "Beatrix Potter"
+      ],
+      "illustrators": [
+        "Beatrix Potter"
+      ],
+      "translators": [],
+      "description": "Beatrix Potter’s own words and watercolours: Peter squeezes under the gate into Mr McGregor’s garden, and very nearly does not get out again.",
+      "language": "en",
+      "ageRange": "3-5",
+      "readingLevel": "pre-reader",
+      "estimatedMinutes": 9,
+      "categories": [
+        "picture-books",
+        "animals",
+        "short-reads",
+        "classics"
+      ],
+      "tags": [
+        "beatrix potter",
+        "rabbits",
+        "garden"
+      ],
+      "cover": "library/tale-of-peter-rabbit/cover.webp",
+      "thumbnail": "library/tale-of-peter-rabbit/thumbnail.webp",
+      "pageCount": 55,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1902 edition; illustrations by Beatrix Potter. Public domain; retrieved from Project Gutenberg ebook #14838.",
+      "attribution": "Beatrix Potter, illustrated by Beatrix Potter.",
+      "featured": true,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "builtin-billy-goats-gruff",
+      "slug": "billy-goats-gruff",
+      "path": "stories/billy-goats-gruff/story.json",
+      "title": "The Three Billy Goats Gruff",
+      "authors": [
+        "Traditional Norwegian tale, retold for Storytime Library"
+      ],
+      "illustrators": [
+        "Storytime Library placeholder art"
+      ],
+      "translators": [],
+      "description": "Three goat brothers want to reach the sweet grass across the river — but a grumpy troll lives under the bridge. A trip-trapping retelling of the Norwegian classic.",
+      "language": "en",
+      "ageRange": "3-5",
+      "readingLevel": "pre-reader",
+      "estimatedMinutes": 4,
+      "categories": [
+        "folk-tales",
+        "adventure",
+        "animals"
+      ],
+      "tags": [
+        "goats",
+        "troll",
+        "bridge",
+        "norway",
+        "classic"
+      ],
+      "cover": "stories/billy-goats-gruff/cover.svg",
+      "pageCount": 7,
+      "hasRecordedNarration": false,
+      "rightsStatus": "original",
+      "source": "Original retelling of the traditional Norwegian tale, written and illustrated for Storytime Library.",
+      "attribution": "Retold and illustrated for Storytime Library (placeholder artwork).",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T12:00:00.000Z",
+      "updatedAt": "2026-08-20T12:00:00.000Z"
+    },
+    {
+      "id": "builtin-three-little-pigs",
+      "slug": "three-little-pigs",
+      "path": "stories/three-little-pigs/story.json",
+      "title": "The Three Little Pigs",
+      "authors": [
+        "Traditional, retold for Storytime Library"
+      ],
+      "illustrators": [
+        "Storytime Library placeholder art"
+      ],
+      "translators": [],
+      "description": "Three little pigs set out to build homes of their own — but one huffing, puffing wolf has other plans. A cozy retelling of the classic tale.",
+      "language": "en",
+      "ageRange": "3-5",
+      "readingLevel": "pre-reader",
+      "estimatedMinutes": 4,
+      "categories": [
+        "folk-tales",
+        "classics",
+        "animals",
+        "bedtime"
+      ],
+      "tags": [
+        "pigs",
+        "wolf",
+        "houses",
+        "classic"
+      ],
+      "cover": "stories/three-little-pigs/cover.svg",
+      "pageCount": 8,
+      "hasRecordedNarration": false,
+      "rightsStatus": "original",
+      "source": "Original retelling of the traditional English folk tale, written and illustrated for Storytime Library.",
+      "attribution": "Retold and illustrated for Storytime Library (placeholder artwork).",
+      "featured": true,
+      "hidden": false,
+      "createdAt": "2026-08-20T12:00:00.000Z",
+      "updatedAt": "2026-08-20T12:00:00.000Z"
+    },
+    {
+      "id": "builtin-tortoise-and-hare",
+      "slug": "tortoise-and-hare",
+      "path": "stories/tortoise-and-hare/story.json",
+      "title": "The Tortoise and the Hare",
+      "authors": [
+        "After Aesop, retold for Storytime Library"
+      ],
+      "illustrators": [
+        "Storytime Library placeholder art"
+      ],
+      "translators": [],
+      "description": "A boastful hare, a steady tortoise, and one unforgettable race. This retelling of Aesop's fable includes demonstration narration on every page.",
+      "language": "en",
+      "ageRange": "3-5",
+      "readingLevel": "pre-reader",
+      "estimatedMinutes": 3,
+      "categories": [
+        "short-reads",
+        "classics",
+        "animals",
+        "funny"
+      ],
+      "tags": [
+        "aesop",
+        "fable",
+        "race",
+        "patience"
+      ],
+      "cover": "stories/tortoise-and-hare/cover.svg",
+      "pageCount": 6,
+      "hasRecordedNarration": true,
+      "rightsStatus": "original",
+      "source": "Original retelling of Aesop's fable, written and illustrated for Storytime Library.",
+      "attribution": "Retold and illustrated for Storytime Library (placeholder artwork; synthetic demo narration).",
+      "featured": true,
+      "hidden": false,
+      "createdAt": "2026-08-20T12:00:00.000Z",
+      "updatedAt": "2026-08-20T12:00:00.000Z"
+    },
+    {
+      "id": "pd-the-violet-fairy-book",
+      "slug": "the-violet-fairy-book",
+      "path": "library/the-violet-fairy-book/story.json",
+      "title": "The Violet Fairy Book",
+      "authors": [
+        "Andrew Lang"
+      ],
+      "illustrators": [
+        "Cover created for Storytime Library (source edition has no illustrations)"
+      ],
+      "translators": [],
+      "description": "Tales from Japan, Serbia, Lithuania and beyond, gathered in Lang’s violet volume.",
+      "language": "en",
+      "ageRange": "4-8",
+      "readingLevel": "early-reader",
+      "estimatedMinutes": 636,
+      "categories": [
+        "fairy-tales",
+        "classics",
+        "chapter-books"
+      ],
+      "tags": [
+        "andrew lang",
+        "fairy tales"
+      ],
+      "cover": "library/the-violet-fairy-book/cover.svg",
+      "pageCount": 724,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1901 edition. Public domain; retrieved from Project Gutenberg ebook #641.",
+      "attribution": "Andrew Lang.",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-the-wind-in-the-willows",
+      "slug": "the-wind-in-the-willows",
+      "path": "library/the-wind-in-the-willows/story.json",
+      "title": "The Wind in the Willows",
+      "authors": [
+        "Kenneth Grahame"
+      ],
+      "illustrators": [
+        "Uncredited in the source edition"
+      ],
+      "translators": [],
+      "description": "Mole, Ratty, Badger and the incorrigible Mr Toad on the River Bank — messing about in boats, and one very stolen motor-car.",
+      "language": "en",
+      "ageRange": "6-10",
+      "readingLevel": "independent",
+      "estimatedMinutes": 367,
+      "categories": [
+        "classics",
+        "animals",
+        "chapter-books",
+        "bedtime"
+      ],
+      "tags": [
+        "toad",
+        "river",
+        "grahame"
+      ],
+      "cover": "library/the-wind-in-the-willows/cover.webp",
+      "thumbnail": "library/the-wind-in-the-willows/thumbnail.webp",
+      "pageCount": 463,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1913 edition. Public domain; retrieved from Project Gutenberg ebook #27805.",
+      "attribution": "Kenneth Grahame.",
+      "featured": true,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-the-wonderful-wizard-of-oz",
+      "slug": "the-wonderful-wizard-of-oz",
+      "path": "library/the-wonderful-wizard-of-oz/story.json",
+      "title": "The Wonderful Wizard of Oz",
+      "authors": [
+        "L. Frank Baum"
+      ],
+      "illustrators": [
+        "Cover created for Storytime Library (source edition has no illustrations)"
+      ],
+      "translators": [],
+      "description": "A cyclone carries Dorothy to Oz, where she gathers a scarecrow, a tin woodman and a cowardly lion and walks the yellow brick road.",
+      "language": "en",
+      "ageRange": "6-10",
+      "readingLevel": "independent",
+      "estimatedMinutes": 246,
+      "categories": [
+        "classics",
+        "adventure",
+        "chapter-books"
+      ],
+      "tags": [
+        "oz",
+        "baum",
+        "dorothy"
+      ],
+      "cover": "library/the-wonderful-wizard-of-oz/cover.svg",
+      "pageCount": 281,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1900 edition. Public domain; retrieved from Project Gutenberg ebook #55.",
+      "attribution": "L. Frank Baum.",
+      "featured": true,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-through-the-looking-glass",
+      "slug": "through-the-looking-glass",
+      "path": "library/through-the-looking-glass/story.json",
+      "title": "Through the Looking-Glass",
+      "authors": [
+        "Lewis Carroll"
+      ],
+      "illustrators": [
+        "Cover created for Storytime Library (source edition has no illustrations)"
+      ],
+      "translators": [],
+      "description": "Alice steps through the mirror into a country laid out like a chessboard, where the flowers talk back.",
+      "language": "en",
+      "ageRange": "6-10",
+      "readingLevel": "independent",
+      "estimatedMinutes": 168,
+      "categories": [
+        "classics",
+        "adventure",
+        "chapter-books",
+        "funny"
+      ],
+      "tags": [
+        "alice",
+        "carroll"
+      ],
+      "cover": "library/through-the-looking-glass/cover.svg",
+      "pageCount": 195,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1871 edition. Public domain; retrieved from Project Gutenberg ebook #12.",
+      "attribution": "Lewis Carroll.",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    },
+    {
+      "id": "pd-treasure-island",
+      "slug": "treasure-island",
+      "path": "library/treasure-island/story.json",
+      "title": "Treasure Island",
+      "authors": [
+        "Robert Louis Stevenson"
+      ],
+      "illustrators": [
+        "Louis Rhead"
+      ],
+      "translators": [],
+      "description": "Jim Hawkins, the black spot, and Long John Silver — the pirate adventure that invented most of what everyone thinks about pirates.",
+      "language": "en",
+      "ageRange": "6-10",
+      "readingLevel": "independent",
+      "estimatedMinutes": 435,
+      "categories": [
+        "adventure",
+        "classics",
+        "chapter-books"
+      ],
+      "tags": [
+        "pirates",
+        "stevenson",
+        "adventure"
+      ],
+      "cover": "library/treasure-island/cover.webp",
+      "thumbnail": "library/treasure-island/thumbnail.webp",
+      "pageCount": 596,
+      "hasRecordedNarration": false,
+      "rightsStatus": "public-domain",
+      "source": "Text of the 1911 edition; illustrations by Louis Rhead. Public domain; retrieved from Project Gutenberg ebook #120.",
+      "attribution": "Robert Louis Stevenson, illustrated by Louis Rhead.",
+      "featured": false,
+      "hidden": false,
+      "createdAt": "2026-08-20T20:15:32.103Z",
+      "updatedAt": "2026-08-20T20:15:32.103Z"
+    }
   ]
 }

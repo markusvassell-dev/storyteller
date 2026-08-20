@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { buildSearchIndex, searchBooks } from '@/lib/search'
-import { validateStoryBook, type StoryBookInput } from '@/lib/schema'
+import { summarize, validateStoryBook, type StoryBookInput } from '@/lib/schema'
 import type { LibraryBook } from '@/lib/library'
 
 function entry(title: string, extras: Partial<StoryBookInput> = {}): LibraryBook {
@@ -20,7 +20,7 @@ function entry(title: string, extras: Partial<StoryBookInput> = {}): LibraryBook
   } satisfies StoryBookInput)
   if (!result.ok || !result.book) throw new Error('fixture invalid')
   return {
-    book: result.book,
+    book: summarize(result.book, `stories/${result.book.slug}/story.json`),
     origin: 'builtin',
     hidden: false,
     quarantined: false,

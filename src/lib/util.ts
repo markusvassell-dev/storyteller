@@ -53,7 +53,12 @@ export function clamp(value: number, min: number, max: number): number {
 
 export function formatMinutes(minutes: number | undefined): string {
   if (!minutes) return ''
-  return minutes === 1 ? '1 min' : `${minutes} mins`
+  if (minutes < 60) return minutes === 1 ? '1 min' : `${minutes} mins`
+  // Full-length classics run to hours; "8 hrs" reads better than "480 mins".
+  const hours = Math.floor(minutes / 60)
+  const rest = minutes % 60
+  const hourPart = hours === 1 ? '1 hr' : `${hours} hrs`
+  return rest === 0 ? hourPart : `${hourPart} ${rest} min`
 }
 
 /** Debounce that also exposes an immediate-cancel, for search boxes. */

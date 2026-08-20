@@ -59,15 +59,21 @@ export async function deleteImportedBook(id: string): Promise<void> {
   await db.bookState.delete(id)
 }
 
-/** Duplicate any library book into a new imported book (assets copied). */
-export async function duplicateBook(entry: LibraryBook): Promise<BookRow> {
-  const src = entry.book
+/**
+ * Duplicate a book into a new imported book (assets copied). Takes the full
+ * book because the library's shelves only hold summaries.
+ */
+export async function duplicateBook(src: StoryBook): Promise<BookRow> {
   const newId = uid()
-  const copyRef = async (ref: string, kind: 'image' | 'thumbnail' | 'cover' | 'audio') => {
+  async function copyRef<T extends string | undefined>(
+    ref: T,
+    kind: 'image' | 'thumbnail' | 'cover' | 'audio',
+  ): Promise<T> {
+    if (!ref) return ref
     if (!isIdbRef(ref)) return ref // static assets can be shared
     const blob = await getAssetBlob(ref)
     if (!blob) throw new Error(`Missing asset while duplicating: ${ref}`)
-    return await saveAsset({ bookId: newId, kind, blob })
+    return (await saveAsset({ bookId: newId, kind, blob })) as T
   }
 
   const pages = []
@@ -75,7 +81,7 @@ export async function duplicateBook(entry: LibraryBook): Promise<BookRow> {
     pages.push({
       ...page,
       image: await copyRef(page.image, 'image'),
-      audio: page.audio ? await copyRef(page.audio, 'audio') : undefined,
+      audio: await copyRef(page.audio, 'audio'),
     })
   }
   const copy: StoryBook = {
@@ -84,15 +90,10 @@ export async function duplicateBook(entry: LibraryBook): Promise<BookRow> {
     slug: await uniqueSlug(`${src.slug}-copy`),
     title: `${src.title} (copy)`,
     cover: await copyRef(src.cover, 'cover'),
-    thumbnail: src.thumbnail ? await copyRef(src.thumbnail, 'thumbnail') : undefined,
+    thumbnail: await copyRef(src.thumbnail, 'thumbnail'),
     pages,
     narration: src.narration
-      ? {
-          ...src.narration,
-          bookAudio: src.narration.bookAudio
-            ? await copyRef(src.narration.bookAudio, 'audio')
-            : undefined,
-        }
+      ? { ...src.narration, bookAudio: await copyRef(src.narration.bookAudio, 'audio') }
       : undefined,
     storageLocation: 'local',
     createdAt: nowIso(),

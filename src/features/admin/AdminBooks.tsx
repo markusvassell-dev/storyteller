@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useAllLibraryBooks, type LibraryBook } from '@/lib/library'
+import { fetchFullBook, useAllLibraryBooks, type LibraryBook } from '@/lib/library'
 import {
   deleteImportedBook,
   duplicateBook,
@@ -79,7 +79,7 @@ export default function AdminBooks() {
                 <strong>{book.title}</strong>
                 <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-ink-soft)', display: 'flex', gap: 'var(--space-2)', flexWrap: 'wrap' }}>
                   <span>{book.authors.join(', ')}</span>
-                  <span>· {book.pages.length} pages</span>
+                  <span>· {book.pageCount} pages</span>
                   <span>· {entry.origin === 'imported' ? 'Imported (on device)' : 'Built-in'}</span>
                   {entry.hidden ? <span className="badge">🙈 Hidden</span> : null}
                   {entry.quarantined ? (
@@ -122,7 +122,12 @@ export default function AdminBooks() {
                   disabled={busy}
                   onClick={() => {
                     setBusy(true)
-                    void duplicateBook(entry)
+                    // Shelves hold summaries; duplication needs the pages.
+                    void fetchFullBook(entry)
+                      .then((full) => {
+                        if (!full) throw new Error('Could not load this book')
+                        return duplicateBook(full)
+                      })
                       .then(() => setMessage(`Duplicated “${book.title}”.`))
                       .catch((err) => setMessage(String(err)))
                       .finally(() => setBusy(false))

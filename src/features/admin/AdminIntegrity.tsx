@@ -8,13 +8,20 @@ export default function AdminIntegrity() {
   const invalidBuiltins = useBuiltinStore((s) => s.invalid)
   const [findings, setFindings] = useState<IntegrityFinding[]>()
   const [running, setRunning] = useState(false)
+  const [progress, setProgress] = useState<{ done: number; total: number }>()
 
   const run = async () => {
     setRunning(true)
+    setProgress({ done: 0, total: books.length })
     try {
-      setFindings(await runIntegrityCheck(books, invalidBuiltins))
+      setFindings(
+        await runIntegrityCheck(books, invalidBuiltins, (done, total) =>
+          setProgress({ done, total }),
+        ),
+      )
     } finally {
       setRunning(false)
+      setProgress(undefined)
     }
   }
 
@@ -36,6 +43,11 @@ export default function AdminIntegrity() {
       >
         {running ? 'Checking…' : 'Run library check'}
       </button>
+      {progress ? (
+        <p role="status" style={{ marginTop: 'var(--space-3)', fontWeight: 700 }}>
+          Checking book {progress.done} of {progress.total}…
+        </p>
+      ) : null}
 
       {findings !== undefined && !running ? (
         <section style={{ marginTop: 'var(--space-5)' }} aria-live="polite">

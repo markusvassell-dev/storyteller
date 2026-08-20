@@ -39,15 +39,36 @@ Requires Node 20+.
 | `npm run audit:assets` | Image/audio format, size, duplicate and alt-text checks |
 | `npm run audit:links` | Story asset refs, docs links, built-output PWA essentials |
 | `npm run narration:map` | Narration/audio mapping validation |
+| `npm run books:fetch` | Fetch the public-domain classics into `public/library/` |
+| `npm run books:probe` | Check which catalog titles are available and illustrated |
 
 ## The library
 
-Six demonstration stories ship with the app — original retellings of
-traditional public-domain tales (Three Little Pigs, Goldilocks, The
-Gingerbread Man, Three Billy Goats Gruff, The Tortoise and the Hare, The Star
-Coins) with original project-created placeholder artwork. One book includes
-prerecorded (synthetic, clearly disclosed) narration. Full provenance:
+**42 books ship with the app, about 19,000 pages.**
+
+- **36 public-domain classics** with their original illustrations wherever the
+  source edition has them — Walter Crane's *Household Stories by the Brothers
+  Grimm*, Tenniel's *Alice*, Beatrix Potter's *Peter Rabbit*, Edward Lear's
+  *Book of Nonsense*, Kate Greenaway's *A Apple Pie*, Jessie Willcox Smith's
+  *A Child's Garden of Verses*, *The Jungle Book*, *Treasure Island*, the Lang
+  fairy books, Andersen, *The Secret Garden*, *Anne of Green Gables*, both Oz
+  books and more. 1,109 original illustrations in total.
+- **6 original demonstration stories** — retellings of traditional tales with
+  project-made artwork; one includes prerecorded (synthetic, disclosed)
+  narration.
+
+Full works, unabridged. Complete provenance for every book, including the two
+that are bundled but hidden by default for period content:
 [docs/content-sources.md](docs/content-sources.md).
+
+Refresh or extend the classics with:
+
+```bash
+npm run books:probe    # check which titles are available and illustrated
+npm run books:fetch    # fetch, normalise and validate the catalog
+```
+
+The catalog lives in `scripts/books/catalog.ts`.
 
 ## Adding your own books
 
@@ -80,6 +101,13 @@ private or under-documented material is ever bundled. See
 - **Device voice**: uses the Web Speech API where supported (iPhone/iPad
   supported), with voice and speed choice. It is always labelled as generated
   by the device, and never autoplays — narration starts from a tap.
+
+## Offline behaviour
+
+The app shell and the six demo stories are precached, so a freshly installed
+app works with no network at all. The 36 classics (about 56 MB) are cached as
+they are read, which keeps installation small — and any book can be pinned
+deliberately with **Save for offline** on its page.
 
 ## Local storage, backup & restore
 
@@ -132,5 +160,11 @@ public-domain demo content — never your private books. Steps:
   only from a tap (an iOS requirement).
 - OCR is not included: page text for scanned books is typed by the owner.
 - Very large PDFs import page-by-page on-device; expect a wait on old phones.
+- Some classics are text-only: the mirror used to fetch them is a 2015
+  snapshot without those editions' plates. They gain their original artwork if
+  `www.gutenberg.org` is reachable — the adapter is written and dormant (see
+  [docs/research.md](docs/research.md)).
+- Alt text for historical illustrations comes from the source edition and is
+  generic where the edition supplied none.
 - Browser storage can be evicted by the OS in extreme low-space situations —
   keep backups.

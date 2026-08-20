@@ -50,7 +50,10 @@ if (!existsSync(storiesDir)) {
 }
 
 // --- file-level checks: format, size, duplicates ---
-const files = walk(storiesDir)
+// Demo stories live in public/stories; fetched public-domain classics in
+// public/library. Both ship with the app, so both are checked.
+const libraryDir = join(publicDir, 'library')
+const files = [...walk(storiesDir), ...(existsSync(libraryDir) ? walk(libraryDir) : [])]
 const hashes = new Map<string, string>()
 for (const file of files) {
   const rel = relative(publicDir, file)
@@ -80,17 +83,18 @@ for (const file of files) {
 const index = builtinIndexSchema.parse(
   JSON.parse(readFileSync(join(storiesDir, 'index.json'), 'utf8')),
 )
-for (const relPath of index.books) {
+for (const summary of index.books) {
   const parsed = storyBookSchema.safeParse(
-    JSON.parse(readFileSync(join(publicDir, relPath), 'utf8')),
+    JSON.parse(readFileSync(join(publicDir, summary.path), 'utf8')),
   )
   if (!parsed.success) {
-    err(`${relPath}: schema invalid (run npm run audit:rights for details)`)
+    err(`${summary.title}: schema invalid (run npm run audit:rights for details)`)
     continue
   }
   const book = parsed.data
   for (const page of book.pages) {
-    if (!page.alt || page.alt.trim().length < 8) {
+    // Text pages carry no artwork, so alt text only applies where there is an image.
+    if (page.image && (!page.alt || page.alt.trim().length < 8)) {
       err(`${book.title} p${page.number}: alternative text missing or too short`)
     }
     if (page.audio && !OK_AUDIO_EXT.has(extname(page.audio).toLowerCase())) {

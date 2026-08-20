@@ -39,6 +39,30 @@ A book saved with `needs-review` rights is stored but **quarantined**: it
 never appears in the child-facing library and is marked in the owner
 workshop. Resolve it by editing the book's Rights step to a definite status.
 
+## Content advisories are not rights
+
+Suitability and copyright are separate questions, and the schema keeps them
+apart. A book can be indisputably public domain and still contain period
+content a grown-up should vet — racial caricature, frightening scenes — so
+that is recorded as `contentAdvisory` plus `hidden: true`, never by pretending
+the rights are unclear.
+
+Such books are bundled **unedited**, stay out of the child-facing library
+until the owner shows them, display a "note for grown-ups" on their book page,
+and can be unhidden from the workshop. `npm run audit:rights` fails the build
+if a book carries an advisory but is not hidden, so unvetted period content
+cannot reach the library by accident.
+
+## Project Gutenberg material
+
+The classics are sourced from Project Gutenberg (via its GitHub mirror). The
+underlying works are public domain; Project Gutenberg's header, footer and
+licence boilerplate are **stripped during import** so nothing carries their
+trademark or licence wrapper, and no claim of affiliation is made. Each book
+records the canonical ebook page as its source. Re-run the import with
+`npm run books:fetch`; the parser that strips the boilerplate is
+`scripts/books/parse.ts` and is covered by tests.
+
 ## Enforcement
 
 - `npm run audit:rights` (runs automatically inside `npm run build`) fails the

@@ -18,6 +18,11 @@
   encryption with wrong-password rejection, junk-file rejection
 - **zip** — ZIP/CBZ extraction order, junk filtering, mime detection
 - **tts** — graceful degradation without the Web Speech API
+- **summary** — index v2 summaries, text-page vs picture-page rules, asset-ref
+  tiers (`stories/`, `library/`, `idb:`)
+- **bookPipeline** — Gutenberg HTML parsing (boilerplate stripping, table
+  layouts, images inside paragraphs, duplicate plates), page composition and
+  pagination, alt-text derivation, cover generation
 
 ### Browser end-to-end — Playwright (`npm run test:e2e`)
 
@@ -47,6 +52,10 @@ Coverage:
   shell, shelves, and a demo book readable with the network cut
 - **pwa** — manifest validity (name, standalone, start_url, 192/512/maskable
   icons resolving), iOS meta tags, service-worker serving & registration
+- **classics** — the bundled public-domain library: original artwork on the
+  shelves, illustrator/source credits, reading a plate and a page of prose,
+  chapter-book pagination, save-for-offline, and the content-advisory rules
+  that keep hidden books out of the library while remaining reachable by link
 - **a11y** — axe-core scans (WCAG 2.x A/AA tags) of home, details, reader,
   settings, and the install guide; serious/critical violations fail
 

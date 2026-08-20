@@ -34,11 +34,11 @@ if (!index.success) {
   process.exit(1)
 }
 
-for (const rel of index.data.books) {
-  const file = join(publicDir, rel)
-  const label = rel
+for (const summary of index.data.books) {
+  const file = join(publicDir, summary.path)
+  const label = summary.title
   if (!existsSync(file)) {
-    err(label, 'story.json listed in index but missing on disk')
+    err(label, `story.json listed in index but missing on disk (${summary.path})`)
     continue
   }
   let raw: unknown
@@ -57,6 +57,17 @@ for (const rel of index.data.books) {
   }
   const book = parsed.data
   const r = book.rights
+
+  // The index is what the app trusts for shelves and filters, so it must
+  // agree with the book it points at.
+  if (summary.id !== book.id) err(label, `index id "${summary.id}" ≠ book id "${book.id}"`)
+  if (summary.slug !== book.slug) err(label, `index slug "${summary.slug}" ≠ book slug "${book.slug}"`)
+  if (summary.pageCount !== book.pages.length) {
+    err(label, `index pageCount ${summary.pageCount} ≠ ${book.pages.length} pages`)
+  }
+  if (summary.rightsStatus !== r.status) {
+    err(label, `index rightsStatus "${summary.rightsStatus}" ≠ "${r.status}"`)
+  }
 
   // --- critical rights rules for anything that ships publicly ---
   if (r.status === 'needs-review') {
@@ -90,6 +101,19 @@ for (const rel of index.data.books) {
     err(book.title, 'bundled artwork has no recorded illustrator/provenance')
   }
   if (!book.rightsCheckedAt) warn(book.title, 'rightsCheckedAt not recorded')
+
+  // Content suitability is separate from rights: a book may be perfectly
+  // public domain and still carry period content a grown-up should vet. Such
+  // books ship unedited but must stay hidden until the owner shows them.
+  if (book.contentAdvisory && !book.hidden) {
+    err(
+      book.title,
+      'has a content advisory but is not hidden — it would appear in the child-facing library unreviewed',
+    )
+  }
+  if (book.hidden && !book.contentAdvisory) {
+    warn(book.title, 'is hidden but records no reason; add a contentAdvisory')
+  }
 
   // --- every referenced asset must exist on disk with documented provenance ---
   const refs = [

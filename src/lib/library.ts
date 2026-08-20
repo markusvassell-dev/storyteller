@@ -1,18 +1,28 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { create } from 'zustand'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db, type BookRow, type BookStateRow, type BuiltinOverrideRow } from './db'
-import { builtinIndexSchema, validateStoryBook, type StoryBook } from './schema'
+import {
+  builtinIndexSchema,
+  summarize,
+  validateStoryBook,
+  type BookSummary,
+  type StoryBook,
+} from './schema'
 import { staticUrl } from './assets'
 
 /**
  * The library merges two tiers:
- *  - built-in demonstration books: static JSON shipped with the app
+ *  - built-in books: static files shipped with the app
  *  - imported private books: rows in IndexedDB (on-device only)
+ *
+ * Shelves, search and filters work on lightweight summaries so opening the
+ * app costs a single small request no matter how large the collection is.
+ * A book's pages are fetched only when it is actually opened (`useFullBook`).
  */
 
 export interface LibraryBook {
-  book: StoryBook
+  book: BookSummary
   origin: 'builtin' | 'imported'
   hidden: boolean
   quarantined: boolean
@@ -21,7 +31,7 @@ export interface LibraryBook {
 }
 
 interface BuiltinStore {
-  books: StoryBook[]
+  books: BookSummary[]
   loaded: boolean
   error?: string
   /** Books that failed validation — surfaced in the admin integrity check. */
@@ -38,27 +48,20 @@ export const useBuiltinStore = create<BuiltinStore>((set, get) => ({
     try {
       const res = await fetch(staticUrl('stories/index.json'))
       if (!res.ok) throw new Error(`index.json → HTTP ${res.status}`)
-      const index = builtinIndexSchema.parse(await res.json())
-      const books: StoryBook[] = []
-      const invalid: BuiltinStore['invalid'] = []
-      await Promise.all(
-        index.books.map(async (path) => {
-          try {
-            const r = await fetch(staticUrl(path))
-            if (!r.ok) throw new Error(`HTTP ${r.status}`)
-            const result = validateStoryBook(await r.json())
-            if (result.ok && result.book) {
-              books.push({ ...result.book, storageLocation: 'builtin' })
-            } else {
-              invalid.push({ path, issues: result.issues.map((i) => `${i.path}: ${i.message}`) })
-            }
-          } catch (err) {
-            invalid.push({ path, issues: [String(err)] })
-          }
-        }),
-      )
-      books.sort((a, b) => a.title.localeCompare(b.title))
-      set({ books, invalid, loaded: true })
+      const parsed = builtinIndexSchema.safeParse(await res.json())
+      if (!parsed.success) {
+        set({
+          error: 'Library index is invalid',
+          invalid: parsed.error.issues.map((i) => ({
+            path: `index.json:${i.path.join('.')}`,
+            issues: [i.message],
+          })),
+          loaded: true,
+        })
+        return
+      }
+      const books = [...parsed.data.books].sort((a, b) => a.title.localeCompare(b.title))
+      set({ books, loaded: true })
     } catch (err) {
       set({ error: String(err), loaded: true })
     }
@@ -66,7 +69,7 @@ export const useBuiltinStore = create<BuiltinStore>((set, get) => ({
 }))
 
 function combine(
-  builtins: StoryBook[],
+  builtins: BookSummary[],
   rows: BookRow[] | undefined,
   overrides: BuiltinOverrideRow[] | undefined,
   states: BookStateRow[] | undefined,
@@ -84,14 +87,15 @@ function combine(
         book,
         origin: 'builtin' as const,
         hidden: (o?.hidden ?? (book.hidden ? 1 : 0)) === 1,
-        quarantined: book.rights.status === 'needs-review',
+        quarantined: book.rightsStatus === 'needs-review',
         sortOrder: o?.sortOrder ?? i,
         state: stateMap.get(book.id),
       }
     })
 
   const fromImported: LibraryBook[] = (rows ?? []).map((row) => ({
-    book: row.book,
+    // Imported books hold the whole book locally; summarise for list views.
+    book: summarize(row.book, `idb:${row.id}`),
     origin: 'imported' as const,
     hidden: row.hidden === 1,
     quarantined: row.quarantined === 1,
@@ -134,9 +138,79 @@ export function useLibraryBook(slug: string | undefined): {
   loading: boolean
 } {
   const { books, loading } = useAllLibraryBooks()
-  const entry = useMemo(
-    () => books.find((b) => b.book.slug === slug),
-    [books, slug],
-  )
+  const entry = useMemo(() => books.find((b) => b.book.slug === slug), [books, slug])
   return { entry, loading }
+}
+
+/* ------------------------------------------------------------------ */
+/* Full books (pages) — fetched on demand                              */
+/* ------------------------------------------------------------------ */
+
+const fullBookCache = new Map<string, Promise<StoryBook | undefined>>()
+
+async function loadFullBook(entry: LibraryBook): Promise<StoryBook | undefined> {
+  if (entry.origin === 'imported') {
+    const row = await db.books.get(entry.book.id)
+    return row?.book
+  }
+  const res = await fetch(staticUrl(entry.book.path))
+  if (!res.ok) throw new Error(`${entry.book.title}: story file unavailable (HTTP ${res.status})`)
+  const result = validateStoryBook(await res.json())
+  if (!result.ok || !result.book) {
+    throw new Error(
+      `${entry.book.title} failed validation: ${result.issues
+        .filter((i) => i.severity === 'error')
+        .map((i) => `${i.path}: ${i.message}`)
+        .join('; ')}`,
+    )
+  }
+  return { ...result.book, storageLocation: 'builtin' }
+}
+
+export function fetchFullBook(entry: LibraryBook): Promise<StoryBook | undefined> {
+  // Imported books can change under the admin screens, so never cache those.
+  if (entry.origin === 'imported') return loadFullBook(entry)
+  const key = entry.book.path
+  const cached = fullBookCache.get(key)
+  if (cached) return cached
+  const promise = loadFullBook(entry).catch((err) => {
+    fullBookCache.delete(key)
+    throw err
+  })
+  fullBookCache.set(key, promise)
+  return promise
+}
+
+/** Loads a book's pages. Returns `undefined` while loading. */
+export function useFullBook(entry: LibraryBook | undefined): {
+  book?: StoryBook
+  loading: boolean
+  error?: string
+} {
+  const [state, setState] = useState<{ book?: StoryBook; loading: boolean; error?: string }>({
+    loading: Boolean(entry),
+  })
+  const key = entry ? `${entry.origin}:${entry.book.id}:${entry.book.updatedAt}` : undefined
+
+  useEffect(() => {
+    if (!entry) {
+      setState({ loading: false })
+      return
+    }
+    let alive = true
+    setState({ loading: true })
+    fetchFullBook(entry)
+      .then((book) => {
+        if (alive) setState({ book, loading: false })
+      })
+      .catch((err: unknown) => {
+        if (alive) setState({ loading: false, error: err instanceof Error ? err.message : String(err) })
+      })
+    return () => {
+      alive = false
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key])
+
+  return state
 }

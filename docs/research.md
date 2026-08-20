@@ -4,6 +4,66 @@ Research performed at implementation time (August 2026) before and during the
 build. Sources were used for facts and architectural ideas only — no code,
 artwork, or content was copied from any of them.
 
+## Sourcing the public-domain classics library (August 2026)
+
+### Egress restrictions found
+
+The session's organisation egress policy **blocks every conventional book
+source**. Verified by probing each host and by
+`curl "$HTTPS_PROXY/__agentproxy/status"`, which recorded
+`connect_rejected … gateway answered 403` per host:
+
+| Host | Reachable | Notes |
+| --- | --- | --- |
+| `www.gutenberg.org`, `gutenberg.org`, mirrors | ❌ 403 | Primary source blocked |
+| `archive.org`, `iiif.archive.org` | ❌ 403 | Blocks true scanned page images |
+| `openlibrary.org`, `standardebooks.org` | ❌ 403 | |
+| `commons.wikimedia.org`, `upload.wikimedia.org`, `en.wikisource.org` | ❌ 403 | |
+| `raw.githubusercontent.com` | ✅ | Serves any public repo by exact path |
+| `api.github.com` | ⚠️ | Session-scoped — cannot list repositories |
+
+WebFetch is subject to the same policy (developers.cloudflare.com was refused);
+WebSearch works, which is how titles and ebook ids were confirmed.
+
+### Source chosen: GITenberg (Project Gutenberg mirrored on GitHub)
+
+`raw.githubusercontent.com/GITenberg/<Title-Slug>_<pgId>/master/<pgId>-h/<pgId>-h.htm`
+plus its `images/` directory. Verified working end to end, including binary
+image downloads. Because the GitHub API cannot list repos here, discovery is
+WebSearch (for the illustrated edition's ebook id) plus direct path probes —
+`npm run books:probe` automates the probing half.
+
+**Caveat recorded for the future:** GITenberg is a ~2015 snapshot, so a number
+of titles are text-only there even though gutenberg.org carries a properly
+illustrated edition (Oz, Peter Pan, the Lang fairy books, Andersen). Those
+books gain their original artwork the moment `www.gutenberg.org` is unblocked
+and `scripts/books/sources/gutenberg.ts` can run — that adapter is written and
+dormant, as is `sources/archive.ts` for Internet Archive scanned page images.
+
+### Probe results
+
+80 candidates probed: 14 carried illustrations in the mirror, 28 were
+text-only, the rest were absent or listed under a different ebook id. Richest
+finds: Household Stories by the Brothers Grimm / Walter Crane (225 images),
+Treasure Island (228), Tom Sawyer (166), Lear's Book of Nonsense (115), The
+Jungle Book (110), The Green Fairy Book (103), A Child's Garden of Verses (95),
+Indian Fairy Tales (85), Alice with Tenniel's engravings (28), and Beatrix
+Potter's Peter Rabbit (28).
+
+### Why the library is not 10 GB
+
+The owner asked for up to 10 GB. That cannot ship on free static hosting:
+Cloudflare Pages' free tier allows **20,000 files and 25 MB per file**, and a
+multi-gigabyte git repository is impractical. A 10 GB library of scanned pages
+would be roughly 65,000 files — over the file cap before considering repo size.
+The bundled library is therefore a curated ~50 MB, and multi-gigabyte
+collections remain possible through the app's existing on-device import path
+(IndexedDB on an installed iOS web app can hold gigabytes), which is where
+private books already live.
+
+Sources: [Cloudflare Pages limits discussion](https://community.cloudflare.com/t/pages-20-000-file-limit-not-lifted-despite-workers-paid-plan-static-site-with-50k/911111),
+[Pages file-limit changelog](https://developers.cloudflare.com/changelog/post/2026-01-23-pages-file-limit-increase/).
+
 ## Projects reviewed (prior art)
 
 | Project | URL | Licence | Verdict |

@@ -31,9 +31,7 @@ const NO_FILTERS: Filters = {
 }
 
 function hasPrerecorded(entry: LibraryBook): boolean {
-  return Boolean(
-    entry.book.narration?.bookAudio || entry.book.pages.some((p) => p.audio),
-  )
+  return entry.book.hasRecordedNarration
 }
 
 function applyFilters(books: LibraryBook[], f: Filters): LibraryBook[] {
@@ -44,7 +42,7 @@ function applyFilters(books: LibraryBook[], f: Filters): LibraryBook[] {
     if (f.ageRange && book.ageRange !== f.ageRange) return false
     if (f.readingLevel && book.readingLevel !== f.readingLevel) return false
     if (f.length) {
-      const mins = book.estimatedMinutes ?? book.pages.length
+      const mins = book.estimatedMinutes ?? book.pageCount
       if (f.length === 'short' && mins > 5) return false
       if (f.length === 'medium' && (mins <= 5 || mins > 12)) return false
       if (f.length === 'long' && mins <= 12) return false

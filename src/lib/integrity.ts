@@ -1,7 +1,7 @@
 import { db } from './db'
 import { staticUrl, verifyBookAssets } from './assets'
 import { validateStoryBook, type StoryBook } from './schema'
-import type { LibraryBook } from './library'
+import { fetchFullBook, type LibraryBook } from './library'
 
 /** Library integrity check, runnable from the admin screen. */
 
@@ -30,6 +30,7 @@ async function staticExists(path: string): Promise<boolean> {
 export async function runIntegrityCheck(
   books: LibraryBook[],
   invalidBuiltins: { path: string; issues: string[] }[],
+  onProgress?: (done: number, total: number) => void,
 ): Promise<IntegrityFinding[]> {
   const findings: IntegrityFinding[] = []
 
@@ -42,26 +43,56 @@ export async function runIntegrityCheck(
     })
   }
 
+  let done = 0
   for (const entry of books) {
-    const { book } = entry
-    const result = validateStoryBook(book)
-    if (!result.ok) {
-      for (const issue of result.issues) {
-        findings.push({
-          bookTitle: book.title,
-          bookId: book.id,
-          severity: 'error',
-          message: `${issue.path}: ${issue.message}`,
-        })
-      }
+    const summary = entry.book
+
+    // Loading the book is itself part of the check — a book whose story file
+    // is missing or malformed can never be opened by a reader.
+    let book: StoryBook | undefined
+    try {
+      book = await fetchFullBook(entry)
+    } catch (err) {
+      findings.push({
+        bookTitle: summary.title,
+        bookId: summary.id,
+        severity: 'error',
+        message: err instanceof Error ? err.message : String(err),
+      })
+      onProgress?.(++done, books.length)
       continue
     }
+    if (!book) {
+      findings.push({
+        bookTitle: summary.title,
+        bookId: summary.id,
+        severity: 'error',
+        message: 'Book data could not be loaded',
+      })
+      onProgress?.(++done, books.length)
+      continue
+    }
+
+    const result = validateStoryBook(book)
     for (const issue of result.issues) {
       findings.push({
         bookTitle: book.title,
         bookId: book.id,
         severity: issue.severity,
         message: `${issue.path}: ${issue.message}`,
+      })
+    }
+    if (!result.ok) {
+      onProgress?.(++done, books.length)
+      continue
+    }
+
+    if (summary.pageCount !== book.pages.length) {
+      findings.push({
+        bookTitle: book.title,
+        bookId: book.id,
+        severity: 'warning',
+        message: `Library index says ${summary.pageCount} pages but the book has ${book.pages.length}`,
       })
     }
 
@@ -94,6 +125,7 @@ export async function runIntegrityCheck(
         message: 'Rights are marked needs-review — the book is quarantined from the library',
       })
     }
+    onProgress?.(++done, books.length)
   }
 
   // Orphaned assets (book deleted but blobs left behind).

@@ -104,8 +104,11 @@ test.describe('owner workshop', () => {
 
     // Hide a built-in book, verify it leaves the home shelves, unhide again.
     await page.getByRole('button', { name: 'Hide The Star Coins' }).click()
-    // Wait for the hidden state to commit before navigating away.
-    await expect(page.getByText('🙈 Hidden')).toBeVisible()
+    // Wait for this book's hidden state to commit before navigating away
+    // (other books are hidden by default for content advisories).
+    await expect(
+      page.locator('li').filter({ hasText: 'The Star Coins' }).getByText('🙈 Hidden'),
+    ).toBeVisible()
     await page.goto('/')
     await expect(page.getByRole('heading', { name: 'Recently Added' })).toBeVisible()
     await expect(page.getByRole('link', { name: /The Star Coins/ })).toHaveCount(0)
@@ -125,10 +128,12 @@ test.describe('owner workshop', () => {
   })
 
   test('library check reports a healthy library', async ({ page }) => {
+    // The check loads every book in the library, so give it room.
+    test.slow()
     await unlockWorkshop(page)
     await page.getByRole('link', { name: 'Library check', exact: true }).click()
     await page.getByRole('button', { name: 'Run library check' }).click()
-    await expect(page.getByText(/everything looks healthy/i)).toBeVisible({ timeout: 15_000 })
+    await expect(page.getByText(/everything looks healthy/i)).toBeVisible({ timeout: 120_000 })
   })
 
   test('exports a backup and restores it after deletion', async ({ page }) => {

@@ -25,10 +25,12 @@ const index = builtinIndexSchema.parse(
   JSON.parse(readFileSync(join(publicDir, 'stories/index.json'), 'utf8')),
 )
 
-for (const rel of index.books) {
-  const parsed = storyBookSchema.safeParse(JSON.parse(readFileSync(join(publicDir, rel), 'utf8')))
+for (const summary of index.books) {
+  const parsed = storyBookSchema.safeParse(
+    JSON.parse(readFileSync(join(publicDir, summary.path), 'utf8')),
+  )
   if (!parsed.success) {
-    err(`${rel}: invalid schema`)
+    err(`${summary.title}: invalid schema`)
     continue
   }
   const book = parsed.data
@@ -68,9 +70,11 @@ for (const rel of index.books) {
     err(`${book.title}: pages have bookAudioCue but narration.bookAudio is missing`)
   }
 
+  // Illustrated pages legitimately have no words; only a book with no text
+  // anywhere leaves read-aloud with nothing to say.
   const silent = book.pages.filter((p) => !p.text && !p.narrationText)
-  for (const p of silent) {
-    warn(`${book.title} p${p.number}: no text — device TTS will skip this page`)
+  if (silent.length === book.pages.length) {
+    warn(`${book.title}: no page has text — device read-aloud will have nothing to say`)
   }
 
   const hasRecorded = pagesWithAudio.length > 0 || Boolean(book.narration?.bookAudio)

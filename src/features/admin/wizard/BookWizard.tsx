@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { useAllLibraryBooks } from '@/lib/library'
+import { fetchFullBook, useAllLibraryBooks } from '@/lib/library'
 import { saveAsset } from '@/lib/assets'
 import { db } from '@/lib/db'
 import { makeThumbnail, normaliseImage } from '@/lib/imageProcessing'
@@ -57,11 +57,15 @@ export default function BookWizard() {
       return
     }
     loadedRef.current = true
-    void draftFromBook(entry.book).then((d) => {
-      setDraft(d)
-      setStep('metadata')
-      setLoadingDraft(false)
-    })
+    // The shelves carry summaries; editing needs the book's pages.
+    void fetchFullBook(entry)
+      .then((full) => (full ? draftFromBook(full) : undefined))
+      .then((d) => {
+        if (d) setDraft(d)
+        setStep('metadata')
+        setLoadingDraft(false)
+      })
+      .catch(() => setLoadingDraft(false))
   }, [editId, books, loading])
 
   const update = useCallback((patch: Partial<Draft>) => {

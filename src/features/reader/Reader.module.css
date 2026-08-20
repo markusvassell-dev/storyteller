@@ -154,6 +154,48 @@
   outline-offset: -3px;
 }
 
+/* ---- Text pages (chapter books & story collections) ----
+   Prose is the page here, so it gets the full height rather than the capped
+   panel a picture book uses. */
+.textPage {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--color-bg-raised);
+  color: var(--color-ink);
+  border-radius: var(--radius-lg);
+  padding: clamp(var(--space-4), 3vw, var(--space-6));
+  font-size: calc(var(--text-md) * var(--story-text-scale));
+  line-height: var(--leading-story);
+  /* Comfortable measure for young readers on wide tablets. */
+  container-type: inline-size;
+}
+
+.textPageHeading {
+  font-size: calc(var(--text-lg) * var(--story-text-scale));
+  margin-block-end: var(--space-3);
+  color: var(--color-accent-strong);
+}
+
+.textPageParagraph + .textPageParagraph {
+  margin-block-start: var(--space-3);
+}
+
+.textPageParagraph {
+  max-width: 62ch;
+  margin-inline: auto;
+}
+
+.textPageImage {
+  display: block;
+  max-width: min(100%, 420px);
+  max-height: 42vh;
+  object-fit: contain;
+  margin: 0 auto var(--space-4);
+  border-radius: var(--radius-md);
+}
+
 /* ---- Caption bar ---- */
 .caption {
   margin: 0 auto;

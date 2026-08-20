@@ -18,15 +18,42 @@ one first:
    or project-original content may be added under `public/stories/` — it ships
    publicly with the app.
 
-## Adding a bundled demo book
+## Adding public-domain classics (the automated path)
 
-1. Create `public/stories/<slug>/` with `cover.svg|webp`, `pages/NN.*`, and
-   optional `audio/NN.mp3`.
+Most bundled books come from the catalog pipeline rather than by hand:
+
+```bash
+npm run books:probe                       # which titles exist / are illustrated
+npm run books:fetch -- --dry-run          # what would be built
+npm run books:fetch -- --only <slug>      # one book
+npm run books:fetch                       # the whole catalog
+npm run books:fetch -- --index-only       # just regenerate stories/index.json
+```
+
+Add a title by appending to `scripts/books/catalog.ts` (Project Gutenberg
+title + ebook id, credits, categories, PD basis) and running the fetch.
+Downloads are cached under `.cache/books/`, so reruns are cheap.
+
+The pipeline strips Project Gutenberg boilerplate, gives full plates their own
+page, tucks chapter ornaments above the text they decorate, paginates prose
+into text pages, encodes WebP, generates a bookplate cover when the edition has
+no artwork, and validates against the story schema before writing anything.
+
+Books with period content that a grown-up should vet get `hiddenByDefault` and
+a `contentAdvisory` in the catalog — never a fake rights status. The audit
+fails the build if an advisory book is not hidden.
+
+## Adding a bundled book by hand
+
+1. Create `public/library/<slug>/` (or `public/stories/<slug>/` for a demo)
+   with a cover, `pages/NN.*`, and optional `audio/NN.mp3`.
 2. Write `story.json` conforming to `src/lib/schema.ts` (`storyBookSchema`).
-   Look at `public/stories/tortoise-and-hare/story.json` as the reference —
-   it exercises pages, alt text, per-page audio, and a complete rights record.
-3. Add the book's path to `public/stories/index.json`.
-4. Every page needs `alt` text; page order is `number: 1..n` with no gaps.
+   `public/stories/tortoise-and-hare/story.json` shows pages, alt text,
+   per-page audio and a complete rights record.
+3. Regenerate the index: `npm run books:fetch -- --index-only`. Never
+   hand-edit `public/stories/index.json` — it is derived from the story files.
+4. Page order is `number: 1..n` with no gaps. Picture pages need `image` +
+   `alt`; text pages (`layout.kind: "text"`) need `text`.
 5. Fill the `rights` block truthfully. Bundled content must have
    `remoteStorageAllowed: true` and `personalUseOnly: false` — if that isn't
    honestly true for this material, it must NOT be bundled (import it in-app

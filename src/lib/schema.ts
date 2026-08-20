@@ -9,13 +9,22 @@ import { z } from 'zod'
  * book fails validation loudly rather than silently appearing in the library.
  */
 
-/** Asset references are either built-in static paths or IndexedDB blob ids. */
+/**
+ * Asset references are either built-in static paths or IndexedDB blob ids.
+ *  - "stories/…" — the original demo collection (precached with the app)
+ *  - "library/…" — fetched public-domain classics (cached on first read)
+ *  - "idb:…"     — privately imported books, stored on the device only
+ */
 export const assetRefSchema = z
   .string()
   .min(1)
-  .refine((v) => v.startsWith('stories/') || v.startsWith('idb:'), {
-    message: 'Asset ref must start with "stories/" (built-in) or "idb:" (imported)',
-  })
+  .refine(
+    (v) => v.startsWith('stories/') || v.startsWith('library/') || v.startsWith('idb:'),
+    {
+      message:
+        'Asset ref must start with "stories/", "library/" (built-in) or "idb:" (imported)',
+    },
+  )
 export type AssetRef = z.infer<typeof assetRefSchema>
 
 export const focalPointSchema = z.object({
@@ -44,10 +53,13 @@ export const pageSchema = z.object({
   number: z.number().int().min(1),
   /** Optional display label, e.g. "Cover", "3–4". */
   label: z.string().max(40).optional(),
-  /** Illustration or rendered page image. */
-  image: assetRefSchema,
-  /** Alternative text describing the illustration. Required for a11y. */
-  alt: z.string().min(1, 'Every page needs alternative text'),
+  /**
+   * Illustration or rendered page image. Required on picture pages; optional
+   * on text pages (a chapter of prose needs no artwork of its own).
+   */
+  image: assetRefSchema.optional(),
+  /** Alternative text describing the illustration. Required whenever there is an image. */
+  alt: z.string().min(1, 'Every illustration needs alternative text').optional(),
   /** Printed text shown on/under the page, if any. */
   text: z.string().optional(),
   /** Text spoken by device TTS; falls back to `text` when absent. */
@@ -63,6 +75,13 @@ export const pageSchema = z.object({
   focalPoint: focalPointSchema.optional(),
   layout: z
     .object({
+      /**
+       * 'picture' — artwork leads, text sits in a panel (picture books).
+       * 'text'    — prose leads and fills the page, with an optional
+       *             illustration above it (chapter books and story
+       *             collections, where a capped text panel would be unreadable).
+       */
+      kind: z.enum(['picture', 'text']).default('picture'),
       /** 'contain' (default, never crops) or 'cover' (uses focalPoint). */
       fit: z.enum(['contain', 'cover']).default('contain'),
       /** Where the text panel sits relative to the artwork. */
@@ -71,6 +90,30 @@ export const pageSchema = z.object({
     .optional(),
   attribution: z.string().optional(),
 })
+  .superRefine((page, ctx) => {
+    const isTextPage = page.layout?.kind === 'text'
+    if (!isTextPage && !page.image) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['image'],
+        message: `Page ${page.number}: picture pages need an image (or layout.kind "text")`,
+      })
+    }
+    if (isTextPage && !page.text?.trim()) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['text'],
+        message: `Page ${page.number}: text pages need text`,
+      })
+    }
+    if (page.image && !page.alt?.trim()) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['alt'],
+        message: `Page ${page.number}: every illustration needs alternative text`,
+      })
+    }
+  })
 export type StoryPage = z.infer<typeof pageSchema>
 
 export const narrationSchema = z.object({
@@ -152,7 +195,8 @@ export const storyBookSchema = z
     language: z.literal('en'),
     ageRange: z.enum(AGE_RANGES).default('all-ages'),
     readingLevel: z.enum(READING_LEVELS).optional(),
-    estimatedMinutes: z.number().int().min(1).max(180).optional(),
+    // Full-length classics run to many hours of reading aloud.
+    estimatedMinutes: z.number().int().min(1).max(10000).optional(),
     categories: z.array(z.string().min(1)).default([]),
     tags: z.array(z.string()).default([]),
     cover: assetRefSchema,
@@ -163,6 +207,12 @@ export const storyBookSchema = z
     /** Free-text provenance summary shown on the details screen. */
     source: z.string().optional(),
     attribution: z.string().optional(),
+    /**
+     * Note about period content a grown-up should know before sharing the
+     * book — racial caricature, frightening scenes and the like. Separate
+     * from `rights`, which is only about who may copy the work.
+     */
+    contentAdvisory: z.string().optional(),
     rightsCheckedAt: z.iso.datetime({ offset: true }).optional(),
     storageLocation: z.enum(['builtin', 'local']).default('local'),
     offlineStatus: z
@@ -214,11 +264,86 @@ export const storyBookSchema = z
 export type StoryBook = z.infer<typeof storyBookSchema>
 export type StoryBookInput = z.input<typeof storyBookSchema>
 
-/** The manifest that lists built-in demonstration books. */
-export const builtinIndexSchema = z.object({
-  version: z.literal(1),
-  books: z.array(z.string().min(1)), // paths to story.json files
+/**
+ * Lightweight summary of a book — everything the shelves, search and filters
+ * need, without its pages. The library index carries these so opening the app
+ * costs one small request instead of downloading every book; the full
+ * `StoryBook` is fetched only when a book is actually opened.
+ */
+export const bookSummarySchema = z.object({
+  id: z.string().min(1),
+  slug: z.string().min(1),
+  /** Path to the full story.json, relative to the site root. */
+  path: z.string().min(1),
+  title: z.string().min(1),
+  subtitle: z.string().optional(),
+  authors: z.array(z.string()).min(1),
+  illustrators: z.array(z.string()).default([]),
+  translators: z.array(z.string()).default([]),
+  description: z.string().default(''),
+  language: z.literal('en'),
+  ageRange: z.enum(AGE_RANGES).default('all-ages'),
+  readingLevel: z.enum(READING_LEVELS).optional(),
+  estimatedMinutes: z.number().int().min(1).max(10000).optional(),
+  categories: z.array(z.string()).default([]),
+  tags: z.array(z.string()).default([]),
+  cover: assetRefSchema,
+  thumbnail: assetRefSchema.optional(),
+  /** Page count, so filters and cards need not load the pages. */
+  pageCount: z.number().int().min(1),
+  /** True when the book ships prerecorded narration (per-page or whole-book). */
+  hasRecordedNarration: z.boolean().default(false),
+  rightsStatus: z.enum(RIGHTS_STATUSES),
+  contentAdvisory: z.string().optional(),
+  source: z.string().optional(),
+  attribution: z.string().optional(),
+  featured: z.boolean().default(false),
+  hidden: z.boolean().default(false),
+  createdAt: z.iso.datetime({ offset: true }),
+  updatedAt: z.iso.datetime({ offset: true }),
 })
+export type BookSummary = z.infer<typeof bookSummarySchema>
+
+/** The manifest listing every book that ships with the app. */
+export const builtinIndexSchema = z.object({
+  version: z.literal(2),
+  books: z.array(bookSummarySchema),
+})
+
+/** Derives the index entry for a full book. */
+export function summarize(book: StoryBook, path: string): BookSummary {
+  return {
+    id: book.id,
+    slug: book.slug,
+    path,
+    title: book.title,
+    subtitle: book.subtitle,
+    authors: book.authors,
+    illustrators: book.illustrators,
+    translators: book.translators,
+    description: book.description,
+    language: book.language,
+    ageRange: book.ageRange,
+    readingLevel: book.readingLevel,
+    estimatedMinutes: book.estimatedMinutes,
+    categories: book.categories,
+    tags: book.tags,
+    cover: book.cover,
+    thumbnail: book.thumbnail,
+    pageCount: book.pages.length,
+    hasRecordedNarration: Boolean(
+      book.narration?.bookAudio || book.pages.some((p) => p.audio),
+    ),
+    rightsStatus: book.rights.status,
+    contentAdvisory: book.contentAdvisory,
+    source: book.source,
+    attribution: book.attribution,
+    featured: book.featured,
+    hidden: book.hidden,
+    createdAt: book.createdAt,
+    updatedAt: book.updatedAt,
+  }
+}
 
 /** Library backup archive manifest (inside the exported ZIP). */
 export const backupManifestSchema = z.object({
@@ -261,14 +386,16 @@ export function validateStoryBook(data: unknown): {
         severity: 'warning',
       })
     }
-    for (const p of book.pages) {
-      if (!p.text && !p.narrationText) {
-        issues.push({
-          path: `pages[${p.number}]`,
-          message: `Page ${p.number} has no text — device narration will skip it`,
-          severity: 'warning',
-        })
-      }
+    // A picture page with no words is normal in an illustrated book, so this
+    // is only worth flagging when a book has no readable text at all — that
+    // is the case where read-aloud has nothing to say.
+    const hasAnyText = book.pages.some((p) => p.text?.trim() || p.narrationText?.trim())
+    if (!hasAnyText) {
+      issues.push({
+        path: 'pages',
+        message: 'No page has text — device read-aloud will have nothing to say',
+        severity: 'warning',
+      })
     }
     return { ok: true, book, issues }
   }

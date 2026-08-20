@@ -8,7 +8,7 @@ import {
   type PointerEvent as ReactPointerEvent,
 } from 'react'
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
-import { useLibraryBook } from '@/lib/library'
+import { useFullBook, useLibraryBook } from '@/lib/library'
 import { recordOpened, recordPageTurn } from '@/lib/bookState'
 import { releaseAssetUrl, resolveAssetUrl } from '@/lib/assets'
 import { useAssetUrl } from '@/lib/useAssetUrl'
@@ -50,6 +50,33 @@ function PageView({
       ? { objectPosition: `${focal.x * 100}% ${focal.y * 100}%` }
       : undefined
 
+  const pageLabel = (
+    <p className="visually-hidden">
+      Page {page.label ?? page.number} of {book.pages.length}
+    </p>
+  )
+
+  // Text pages (chapter books, story collections): prose leads and fills the
+  // page, with the illustration — when the original had one here — above it.
+  if (page.layout?.kind === 'text') {
+    return (
+      <div className={styles.page}>
+        <article className={`${styles.textPage} ${narrating ? styles.narrating : ''}`}>
+          {page.image && url ? (
+            <img className={styles.textPageImage} src={url} alt={page.alt ?? ''} draggable={false} />
+          ) : null}
+          {page.label ? <h2 className={styles.textPageHeading}>{page.label}</h2> : null}
+          {(page.text ?? '').split('\n\n').map((paragraph, i) => (
+            <p key={i} className={styles.textPageParagraph}>
+              {paragraph}
+            </p>
+          ))}
+        </article>
+        {pageLabel}
+      </div>
+    )
+  }
+
   return (
     <div className={styles.page}>
       <div className={`${styles.pageImageWrap} ${narrating ? styles.narrating : ''}`}>
@@ -57,7 +84,7 @@ function PageView({
           <img
             className={`${styles.pageImage} ${fit === 'cover' ? styles.pageImageCover : ''}`}
             src={url}
-            alt={page.alt}
+            alt={page.alt ?? ''}
             style={imgStyle}
             draggable={false}
           />
@@ -73,9 +100,7 @@ function PageView({
       {textPosition === 'below' && page.text ? (
         <p className={styles.pageText}>{page.text}</p>
       ) : null}
-      <p className="visually-hidden">
-        Page {page.label ?? page.number} of {book.pages.length}
-      </p>
+      {pageLabel}
     </div>
   )
 }
@@ -84,10 +109,12 @@ export default function Reader() {
   const { slug } = useParams()
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
-  const { entry, loading } = useLibraryBook(slug)
+  const { entry, loading: entryLoading } = useLibraryBook(slug)
   const settings = useSettings()
 
-  const book = entry?.book
+  // The shelves only carry summaries; the pages arrive when a book is opened.
+  const { book, loading: bookLoading, error: bookError } = useFullBook(entry)
+  const loading = entryLoading || bookLoading
   const tabletWide = useViewportWide(900)
   const twoUp =
     settings.readerLayout === 'spread' || (settings.readerLayout === 'auto' && tabletWide)
@@ -178,9 +205,9 @@ export default function Reader() {
     const next = spreads[spreadIndex + 1]
     if (!next) return
     for (const i of next) {
-      const page = book.pages[i]
-      if (page) {
-        void resolveAssetUrl(page.image).then((url) => {
+      const image = book.pages[i]?.image
+      if (image) {
+        void resolveAssetUrl(image).then((url) => {
           if (url) {
             const img = new Image()
             img.src = url
@@ -195,7 +222,7 @@ export default function Reader() {
         .filter((v): v is number => v !== undefined),
     )
     book.pages.forEach((page, i) => {
-      if (!keep.has(i) && page.image.startsWith('idb:')) releaseAssetUrl(page.image)
+      if (!keep.has(i) && page.image?.startsWith('idb:')) releaseAssetUrl(page.image)
     })
   }, [book, spreads, spreadIndex])
 
@@ -277,7 +304,11 @@ export default function Reader() {
           <p style={{ fontSize: '2.5rem' }} aria-hidden="true">
             🔍
           </p>
-          <p>We couldn't find that book.</p>
+          <p>
+            {bookError
+              ? `This book could not be opened. ${bookError}`
+              : "We couldn't find that book."}
+          </p>
           <Link to="/" className="btn btn-primary" style={{ marginTop: 'var(--space-4)' }}>
             Back to the library
           </Link>

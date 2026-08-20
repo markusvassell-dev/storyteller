@@ -21,12 +21,16 @@ const index = builtinIndexSchema.parse(
   JSON.parse(readFileSync(join(publicDir, 'stories/index.json'), 'utf8')),
 )
 let refCount = 0
-for (const rel of index.books) {
-  if (!existsSync(join(publicDir, rel))) {
-    err(`index.json → missing ${rel}`)
+for (const summary of index.books) {
+  if (!existsSync(join(publicDir, summary.path))) {
+    err(`index.json → missing ${summary.path}`)
     continue
   }
-  const parsed = storyBookSchema.safeParse(JSON.parse(readFileSync(join(publicDir, rel), 'utf8')))
+  refCount++
+  if (!existsSync(join(publicDir, summary.cover))) {
+    err(`${summary.title}: index cover missing (${summary.cover})`)
+  }
+  const parsed = storyBookSchema.safeParse(JSON.parse(readFileSync(join(publicDir, summary.path), 'utf8')))
   if (!parsed.success) continue
   const book = parsed.data
   const refs = [

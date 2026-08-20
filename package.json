@@ -17,7 +17,9 @@
     "audit:assets": "tsx scripts/asset-optimizer.ts --check",
     "audit:links": "tsx scripts/link-check.ts",
     "narration:map": "tsx scripts/narration-helper.ts",
-    "check": "npm run typecheck && npm run lint && npm run test && npm run audit:rights && npm run audit:assets"
+    "check": "npm run typecheck && npm run lint && npm run test && npm run audit:rights && npm run audit:assets",
+    "books:fetch": "tsx scripts/books/fetch-books.ts",
+    "books:probe": "tsx scripts/books/probe.ts"
   },
   "dependencies": {
     "@fontsource-variable/baloo-2": "^5.3.0",
@@ -41,6 +43,7 @@
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.5",
+    "@types/jsdom": "^30.0.0",
     "@types/node": "^26.2.0",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
@@ -51,6 +54,7 @@
     "fake-indexeddb": "^6.2.5",
     "globals": "^17.11.0",
     "jsdom": "^30.0.1",
+    "sharp": "^0.35.3",
     "tsx": "^4.23.12",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.67.0",

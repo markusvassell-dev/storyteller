@@ -1,5 +1,12 @@
+import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { useLibraryBook } from '@/lib/library'
+import {
+  getOfflineState,
+  removeBookOffline,
+  saveBookOffline,
+  type OfflineState,
+} from '@/lib/offline'
+import { useFullBook, useLibraryBook } from '@/lib/library'
 import { useAssetUrl } from '@/lib/useAssetUrl'
 import { toggleFavourite } from '@/lib/bookState'
 import { useOwnerGate } from '@/lib/ownerGate'
@@ -22,6 +29,24 @@ export default function BookDetails() {
   const { entry, loading } = useLibraryBook(slug)
   const unlocked = useOwnerGate((s) => s.unlocked)
   const coverUrl = useAssetUrl(entry?.book.cover)
+  // Pages are not needed to render this screen — only the rights panel wants
+  // the full record, so it streams in without delaying the cover and buttons.
+  const { book: full } = useFullBook(entry)
+
+  // Classics are cached as they are read, so the owner can also pin one to
+  // the device deliberately — useful before a journey or a bedtime offline.
+  const [offline, setOffline] = useState<OfflineState>()
+  const [saving, setSaving] = useState<{ done: number; total: number }>()
+  useEffect(() => {
+    if (!full) return
+    let alive = true
+    void getOfflineState(full).then((s) => {
+      if (alive) setOffline(s)
+    })
+    return () => {
+      alive = false
+    }
+  }, [full])
 
   if (loading) {
     return <p role="status">Fetching this book…</p>
@@ -38,7 +63,7 @@ export default function BookDetails() {
 
   const { book, state, origin } = entry
   const resumePage = state && state.currentPage > 1 && !state.completed ? state.currentPage : undefined
-  const hasRecorded = Boolean(book.narration?.bookAudio || book.pages.some((p) => p.audio))
+  const hasRecorded = book.hasRecordedNarration
   const fav = Boolean(state?.favourite)
 
   return (
@@ -86,7 +111,7 @@ export default function BookDetails() {
               <span aria-hidden="true">🎂</span> Ages {book.ageRange.replace('-', '–')}
             </li>
             <li className="badge">
-              <span aria-hidden="true">📄</span> {book.pages.length} pages
+              <span aria-hidden="true">📄</span> {book.pageCount} pages
             </li>
             {book.estimatedMinutes ? (
               <li className="badge">
@@ -97,9 +122,19 @@ export default function BookDetails() {
               <span aria-hidden="true">🔊</span>{' '}
               {hasRecorded ? 'Recorded narration' : 'Read-aloud voice'}
             </li>
-            <li className="badge badge-positive">
+            <li
+              className={`badge ${offline === 'not-saved' ? '' : 'badge-positive'}`}
+            >
               <span aria-hidden="true">📱</span>{' '}
-              {origin === 'imported' ? 'Stored on this device' : 'Available offline'}
+              {origin === 'imported'
+                ? 'Stored on this device'
+                : offline === 'saved'
+                  ? 'Saved for offline'
+                  : offline === 'partial'
+                    ? 'Partly saved offline'
+                    : offline === 'not-saved'
+                      ? 'Downloads as you read'
+                      : 'Available offline'}
             </li>
             {state?.completed ? (
               <li className="badge badge-positive">
@@ -107,6 +142,28 @@ export default function BookDetails() {
               </li>
             ) : null}
           </ul>
+
+          {book.contentAdvisory ? (
+            <p
+              className="badge badge-warning"
+              style={{
+                display: 'flex',
+                gap: 'var(--space-2)',
+                alignItems: 'flex-start',
+                whiteSpace: 'normal',
+                textAlign: 'left',
+                padding: 'var(--space-3) var(--space-4)',
+                margin: 'var(--space-3) 0',
+                maxWidth: '60ch',
+                fontWeight: 400,
+              }}
+            >
+              <span aria-hidden="true">⚠️</span>
+              <span>
+                <strong>A note for grown-ups:</strong> {book.contentAdvisory}
+              </span>
+            </p>
+          ) : null}
 
           {book.description ? (
             <p className={styles.description}>{book.description}</p>
@@ -134,11 +191,40 @@ export default function BookDetails() {
               type="button"
               className="btn btn-lg"
               aria-pressed={fav}
-              onClick={() => void toggleFavourite(book.id, book.pages.length)}
+              onClick={() => void toggleFavourite(book.id, book.pageCount)}
             >
               <span aria-hidden="true">{fav ? '⭐' : '☆'}</span>
               {fav ? 'Favourite' : 'Add favourite'}
             </button>
+            {full && (offline === 'not-saved' || offline === 'partial') ? (
+              <button
+                type="button"
+                className="btn btn-lg"
+                disabled={Boolean(saving)}
+                onClick={() => {
+                  setSaving({ done: 0, total: full.pages.length })
+                  void saveBookOffline(full, setSaving)
+                    .then(() => getOfflineState(full).then(setOffline))
+                    .finally(() => setSaving(undefined))
+                }}
+              >
+                <span aria-hidden="true">⬇️</span>
+                {saving
+                  ? `Saving ${saving.done}/${saving.total}…`
+                  : 'Save for offline'}
+              </button>
+            ) : null}
+            {full && offline === 'saved' ? (
+              <button
+                type="button"
+                className="btn btn-lg"
+                onClick={() => {
+                  void removeBookOffline(full).then(() => setOffline('not-saved'))
+                }}
+              >
+                <span aria-hidden="true">🧹</span> Free up space
+              </button>
+            ) : null}
             {unlocked ? (
               <Link to={`/admin/books/${book.id}/edit`} className="btn btn-outline btn-lg">
                 <span aria-hidden="true">🛠️</span> Edit
@@ -152,17 +238,23 @@ export default function BookDetails() {
             </summary>
             <dl className={styles.rightsBody}>
               <dt>Rights status</dt>
-              <dd>{RIGHTS_LABELS[book.rights.status] ?? book.rights.status}</dd>
-              {book.rights.license ? (
+              <dd>{RIGHTS_LABELS[book.rightsStatus] ?? book.rightsStatus}</dd>
+              {full?.rights.license ? (
                 <>
                   <dt>Licence</dt>
-                  <dd>{book.rights.license}</dd>
+                  <dd>{full.rights.license}</dd>
                 </>
               ) : null}
-              {book.rights.publicDomainBasis ? (
+              {full?.rights.publicDomainBasis ? (
                 <>
                   <dt>Public-domain basis</dt>
-                  <dd>{book.rights.publicDomainBasis}</dd>
+                  <dd>{full.rights.publicDomainBasis}</dd>
+                </>
+              ) : null}
+              {full?.rights.sourceOrganization ? (
+                <>
+                  <dt>Source organisation</dt>
+                  <dd>{full.rights.sourceOrganization}</dd>
                 </>
               ) : null}
               {book.source ? (
@@ -177,20 +269,26 @@ export default function BookDetails() {
                   <dd>{book.attribution}</dd>
                 </>
               ) : null}
-              {book.rights.sourceUrl ? (
+              {full?.rights.sourceUrl ? (
                 <>
                   <dt>Source link</dt>
                   <dd>
-                    <a href={book.rights.sourceUrl} target="_blank" rel="noreferrer">
-                      {book.rights.sourceUrl}
+                    <a href={full.rights.sourceUrl} target="_blank" rel="noreferrer">
+                      {full.rights.sourceUrl}
                     </a>
                   </dd>
                 </>
               ) : null}
-              {book.rightsCheckedAt ? (
+              {full?.rights.notes ? (
+                <>
+                  <dt>Notes</dt>
+                  <dd>{full.rights.notes}</dd>
+                </>
+              ) : null}
+              {full?.rightsCheckedAt ? (
                 <>
                   <dt>Rights checked</dt>
-                  <dd>{new Date(book.rightsCheckedAt).toLocaleDateString('en')}</dd>
+                  <dd>{new Date(full.rightsCheckedAt).toLocaleDateString('en')}</dd>
                 </>
               ) : null}
               {origin === 'imported' ? (

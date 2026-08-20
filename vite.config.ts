@@ -45,16 +45,46 @@ export default defineConfig({
         // demo library works offline. Audio is runtime-cached (below) because
         // Safari streams it with range requests.
         globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,woff2,webmanifest,json}'],
-        // English-only app: skip precaching the other font subsets.
         globIgnores: [
+          // English-only app: skip precaching the other font subsets.
           '**/*devanagari*',
           '**/*cyrillic*',
           '**/*vietnamese*',
           '**/node_modules/**',
+          // The public-domain classics are large, so they are cached as they
+          // are read rather than downloaded at install time. Their covers are
+          // precached (below) so the shelves look complete offline, and the
+          // small demo collection in stories/ stays fully precached so a
+          // freshly installed app is immediately readable with no network.
+          'library/*/pages/**',
+          'library/*/story.json',
         ],
         maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
         navigateFallbackDenylist: [/^\/api\//],
         runtimeCaching: [
+          {
+            // Classic-library pages: kept after first read so a book the
+            // child has opened stays available offline, with a ceiling so the
+            // cache cannot grow without bound.
+            urlPattern: /\/library\/[^/]+\/pages\/.*\.(?:webp|jpe?g|png|svg)$/,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'library-pages',
+              cacheableResponse: { statuses: [0, 200] },
+              expiration: { maxEntries: 3000, maxAgeSeconds: 60 * 60 * 24 * 365, purgeOnQuotaError: true },
+            },
+          },
+          {
+            // Book data is small; revalidate in the background so edits to a
+            // deployed book appear without blocking the reader.
+            urlPattern: /\/library\/[^/]+\/story\.json$/,
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'library-books',
+              cacheableResponse: { statuses: [0, 200] },
+              expiration: { maxEntries: 300, purgeOnQuotaError: true },
+            },
+          },
           {
             // pdf.js worker (admin PDF import) — cached after first use so
             // importing keeps working offline.

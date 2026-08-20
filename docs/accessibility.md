@@ -42,6 +42,19 @@ library home, book details, reader, settings, and install guide at phone and
 desktop sizes; any serious/critical violation fails CI. Unit-level schema
 tests enforce alt text.
 
+## Alternative text for historical illustrations
+
+Alt text for the public-domain classics comes from the edition itself — the
+illustration's own `alt` attribute, then its caption. Where a source offers
+neither, the app states what the image is ("Illustration from The Jungle Book
+by W. H. Drake") rather than inventing a description of artwork that was never
+described. That is honest but thin, and it is a known limitation: a
+screen-reader user gets the fact of an illustration, not its content. The
+owner can write better alt text for any page through the admin editor.
+
+Text pages carry no image and therefore need no alt text; the schema enforces
+alt text on every page that *does* have an image.
+
 ## Known gaps / manual-check list
 
 - Real VoiceOver behaviour on iOS (rotor navigation through the reader) needs

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- Storytime Library mark: an open book under a crescent moon (original artwork) -->
+  <rect width="128" height="128" rx="28" fill="#251f3f"/>
+  <circle cx="88" cy="34" r="14" fill="#f2b866"/>
+  <circle cx="94" cy="30" r="12" fill="#251f3f"/>
+  <circle cx="36" cy="26" r="2.5" fill="#f4edff"/>
+  <circle cx="52" cy="38" r="1.8" fill="#c9c1e2"/>
+  <circle cx="24" cy="44" r="1.8" fill="#c9c1e2"/>
+  <path d="M20 92c0-4 3-7 7-7 13 0 26 3 37 10 11-7 24-10 37-10 4 0 7 3 7 7v8c0 4-3 7-7 7-13 0-26 2-37 9-11-7-24-9-37-9-4 0-7-3-7-7z" fill="#8a4510"/>
+  <path d="M64 56c-10-7-23-10-36-10-4 0-8 3-8 7v34c0 4 4 7 8 7 13 0 26 2 36 9z" fill="#fffaf1"/>
+  <path d="M64 56c10-7 23-10 36-10 4 0 8 3 8 7v34c0 4-4 7-8 7-13 0-26 2-36 9z" fill="#faf3e7"/>
+  <path d="M64 56v47" stroke="#d9cbb2" stroke-width="3" stroke-linecap="round"/>
+  <g stroke="#b8a889" stroke-width="3" stroke-linecap="round">
+    <path d="M30 62c8 0 16 2 24 5M30 74c8 0 16 2 24 5M30 86c8 0 16 2 24 5"/>
+    <path d="M98 62c-8 0-16 2-24 5M98 74c-8 0-16 2-24 5M98 86c-8 0-16 2-24 5"/>
+  </g>
+</svg>

@@ -5,6 +5,19 @@ the public-domain demo stories. Private books never touch the host.
 
 No secrets or environment variables are required (see `.env.example`).
 
+## Node version (required)
+
+The build needs **Node ≥ 20.19 or ≥ 22.12** — Vite 8 refuses to run on older
+releases, and a host that defaults to Node 18 fails at `vite build` with
+nothing in `dist/`. The repo pins this two ways so no dashboard setting is
+needed:
+
+- `.node-version` (`22.22.2`) — read by Cloudflare Pages, Netlify and Vercel.
+- `engines.node` in `package.json` — documents the same requirement.
+
+If a host ignores both, set the environment variable `NODE_VERSION=22.22.2`
+in its build settings instead.
+
 ## Recommended: Cloudflare Pages (free)
 
 Unlimited free bandwidth, HTTPS, free custom domains, direct GitHub builds.

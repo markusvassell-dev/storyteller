@@ -16,9 +16,14 @@ Unlimited free bandwidth, HTTPS, free custom domains, direct GitHub builds.
    - Build output directory: `dist`
    - (Leave environment variables empty.)
 3. Deploy. The site appears at `https://<project>.pages.dev`.
-4. Every push to the production branch redeploys automatically; the included
-   `public/_headers` file sets immutable caching for hashed assets and
-   no-cache for `index.html`/`sw.js` so updates roll out correctly.
+4. Every push to the production branch redeploys automatically. Two files in
+   `public/` ship with the build and configure the host:
+   - `_headers` — immutable caching for hashed assets, no-cache for
+     `index.html`/`sw.js` so updates roll out correctly.
+   - `_redirects` — `/* /index.html 200`, the SPA fallback. Without it a cold
+     request for `/book/<slug>`, `/admin` or `/settings` (a shared link, a
+     bookmark, or the installed app's start_url after a cache miss) gets the
+     host's 404 instead of the app. Static files still take precedence.
 
 **Custom domain**: Pages project → Custom domains → add your domain (free,
 including automatic HTTPS). Any registrar works; DNS on Cloudflare is easiest.

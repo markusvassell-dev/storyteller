@@ -1,0 +1,9 @@
+# Cloudflare Pages / Netlify SPA fallback.
+#
+# The library is a client-routed app, so a cold request for a deep link —
+# /book/<slug>, /admin, /settings, or the installed app's start_url after a
+# cache miss — has no file of its own on the host. Rewriting to index.html
+# (200, not a redirect) lets the router resolve the path in the browser and
+# keeps the URL intact. Static files still win: this only applies when nothing
+# else matches.
+/*    /index.html   200

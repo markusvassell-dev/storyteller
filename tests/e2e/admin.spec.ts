@@ -140,9 +140,12 @@ test.describe('owner workshop', () => {
     await page.getByLabel('Rights status *').selectOption('original')
     await page.getByRole('button', { name: 'Next →' }).click()
 
-    // Edited pages still save and read back.
+    // Edited pages still save and read back. Wait for the wizard to land in
+    // Books — the preview step shows the title too, so asserting on the title
+    // alone would race the save.
     await expect(page.getByText(/passes validation/i)).toBeVisible()
     await page.getByRole('button', { name: 'Add to library' }).click()
+    await expect(page.getByRole('heading', { name: 'Books', exact: true })).toBeVisible()
     await expect(page.getByText('Photographed Book')).toBeVisible()
 
     await page.goto('/book/photographed-book')
@@ -221,6 +224,7 @@ test.describe('owner workshop', () => {
     await page.getByRole('button', { name: 'Next →' }).click()
     await expect(page.getByText(/passes validation/i)).toBeVisible()
     await page.getByRole('button', { name: 'Add to library' }).click()
+    await expect(page.getByRole('heading', { name: 'Books', exact: true })).toBeVisible()
     await expect(page.getByText('Tap Along Book')).toBeVisible()
   })
 

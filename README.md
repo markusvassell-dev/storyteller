@@ -89,6 +89,16 @@ the rights to use them. Imported books are stored in the browser's IndexedDB
 **on that device only**. See [docs/admin-guide.md](docs/admin-guide.md) and
 [docs/adding-a-story.md](docs/adding-a-story.md).
 
+Two steps do the tedious parts for you:
+
+- **Photographed a book?** Step 3 trims the desk out of every photo in one go
+  and rotates the whole set; individual pages get a straighten-and-crop editor.
+  Edits always re-render from the photo you imported, so Reset really resets
+  and your original files are never touched.
+- **One recording for the whole book?** Step 5 lets you press play and tap
+  **Turn the page** as you listen — the taps become the page timestamps. You
+  can nudge any mark by half a second, or spread the pages evenly and adjust.
+
 **Content rules:** import only books you own or have permission to use (for
 example, your own Robert Munsch collection scanned from your own copies). The
 app never fetches book content from the internet, and the build fails if

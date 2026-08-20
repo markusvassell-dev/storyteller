@@ -1,4 +1,5 @@
 import type { RightsRecord, StoryBook } from '@/lib/schema'
+import type { PageEdit } from '@/lib/imageEditing'
 import { getAssetBlob } from '@/lib/assets'
 import { uid } from '@/lib/util'
 
@@ -14,6 +15,14 @@ export interface DraftPage {
   previewUrl?: string
   sourceName?: string
   hash?: string
+  /**
+   * The untouched imported bytes. Kept so straighten/trim edits always
+   * re-render from the photograph rather than compounding, and so "reset"
+   * can always get the original back.
+   */
+  originalBlob?: Blob
+  /** Current straighten/trim settings, for redisplay in the editor. */
+  edit?: PageEdit
   alt: string
   text: string
   narrationText: string

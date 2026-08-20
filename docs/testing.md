@@ -23,6 +23,11 @@
 - **bookPipeline** — Gutenberg HTML parsing (boilerplate stripping, table
   layouts, images inside paragraphs, duplicate plates), page composition and
   pagination, alt-text derivation, cover generation
+- **imageEditing** — scan auto-trim over synthetic pixel buffers: finding a
+  page on a contrasting background, single-axis trims, padding clamped to the
+  frame, refusing an over-aggressive trim, tolerance/padding options
+- **audioCues** — whole-book recordings: tap times → per-page cues and back,
+  even spacing, and the timing mistakes `validateCues` must catch
 
 ### Browser end-to-end — Playwright (`npm run test:e2e`)
 
@@ -45,9 +50,12 @@ Coverage:
   TTS fallback for books without recordings
 - **admin** — PIN gate (set/lock/wrong-PIN/unlock), the full 8-step image
   import wizard (order fixing, alt text, rights confirmation, validation,
-  save), reading the imported book, hide/duplicate/delete, storage usage +
-  deletion, integrity check, custom categories, and a full backup
-  export→delete→restore round trip via real file download/upload
+  save), reading the imported book, scan cleanup (bulk trim of photographed
+  pages plus the per-page straighten editor, then reading the edited book),
+  read-along timing (even spacing, tap-to-mark, nudging, applying),
+  hide/duplicate/delete, storage usage + deletion, integrity check, custom
+  categories, and a full backup export→delete→restore round trip via real
+  file download/upload
 - **offline** — service-worker precache, then a fully offline reload:
   shell, shelves, and a demo book readable with the network cut
 - **pwa** — manifest validity (name, standalone, start_url, 192/512/maskable

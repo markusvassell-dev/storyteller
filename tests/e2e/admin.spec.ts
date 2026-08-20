@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test'
-import { onlyOnProjects, svgPage } from './helpers'
+import { onlyOnProjects, photoPage, svgPage, wavClip } from './helpers'
 
 async function unlockWorkshop(page: Page) {
   await page.goto('/admin')
@@ -95,6 +95,133 @@ test.describe('owner workshop', () => {
     await page.getByRole('button', { name: /read this book/i }).click()
     await expect(page.getByText('1 / 3')).toBeVisible()
     await expect(page.getByRole('img', { name: 'A dark cover page' })).toBeVisible()
+  })
+
+  test('tidies photographed pages in bulk and one at a time', async ({ page }) => {
+    test.slow()
+    await unlockWorkshop(page)
+    await page.getByRole('link', { name: /add a book/i }).first().click()
+
+    await page.getByLabel('Choose book files').setInputFiles([
+      { name: 'photo1.png', mimeType: 'image/png', buffer: await photoPage('One') },
+      { name: 'photo2.png', mimeType: 'image/png', buffer: await photoPage('Two') },
+    ])
+    await expect(page.getByText('2 pages ready', { exact: false })).toBeVisible()
+    await page.getByRole('button', { name: 'Next →' }).click()
+
+    await page.getByLabel('Title *').fill('Photographed Book')
+    await page.getByLabel('Author(s) *').fill('E2E Camera')
+    await page.getByRole('button', { name: 'Next →' }).click()
+
+    // 3 · Page order also hosts the scan tools.
+    await page.getByRole('button', { name: /Trim every page/ }).click()
+    await expect(page.getByText(/Trimmed the background from 2 of 2 pages/)).toBeVisible({
+      timeout: 30_000,
+    })
+    await expect(page.getByText('✂️ tidied')).toHaveCount(2)
+
+    // The per-page editor straightens one page without touching the other.
+    await page.getByRole('button', { name: 'Straighten and trim page 1' }).click()
+    const editor = page.getByRole('dialog', { name: 'Edit page 1' })
+    await expect(editor.getByRole('heading', { name: 'Tidy up page 1' })).toBeVisible()
+    await editor.getByRole('button', { name: 'Rotate right 90 degrees' }).click()
+    await expect(editor.getByText('90.0°')).toBeVisible()
+    await editor.getByRole('button', { name: /Apply to this page/ }).click()
+    await expect(editor).toHaveCount(0)
+    await page.getByRole('button', { name: 'Next →' }).click()
+
+    // 4 · Page text
+    await page.getByLabel('Picture description (alt text) *').nth(0).fill('A tidied page one')
+    await page.getByLabel('Picture description (alt text) *').nth(1).fill('A tidied page two')
+    await page.getByRole('button', { name: 'Next →' }).click()
+
+    // 5 · Narration — skip. 6 · Rights — original work.
+    await page.getByRole('button', { name: 'Next →' }).click()
+    await page.getByLabel('Rights status *').selectOption('original')
+    await page.getByRole('button', { name: 'Next →' }).click()
+
+    // Edited pages still save and read back.
+    await expect(page.getByText(/passes validation/i)).toBeVisible()
+    await page.getByRole('button', { name: 'Add to library' }).click()
+    await expect(page.getByText('Photographed Book')).toBeVisible()
+
+    await page.goto('/book/photographed-book')
+    await page.getByRole('button', { name: /read this book/i }).click()
+    await expect(page.getByRole('img', { name: 'A tidied page one' })).toBeVisible()
+  })
+
+  test('maps one whole-book recording onto pages by tapping along', async ({ page }) => {
+    test.slow()
+    await unlockWorkshop(page)
+    await page.getByRole('link', { name: /add a book/i }).first().click()
+
+    await page.getByLabel('Choose book files').setInputFiles([
+      { name: 'p1.svg', mimeType: 'image/svg+xml', buffer: svgPage('One', '#2c2547') },
+      { name: 'p2.svg', mimeType: 'image/svg+xml', buffer: svgPage('Two', '#9c3d54') },
+    ])
+    await expect(page.getByText('2 pages ready', { exact: false })).toBeVisible()
+    await page.getByRole('button', { name: 'Next →' }).click()
+
+    await page.getByLabel('Title *').fill('Tap Along Book')
+    await page.getByLabel('Author(s) *').fill('E2E Narrator')
+    await page.getByRole('button', { name: 'Next →' }).click()
+    await page.getByRole('button', { name: 'Next →' }).click()
+
+    await page.getByLabel('Picture description (alt text) *').nth(0).fill('The first picture')
+    await page.getByLabel('Picture description (alt text) *').nth(1).fill('The second picture')
+    await page.getByRole('button', { name: 'Next →' }).click()
+
+    // 5 · Narration with one recording for the whole book.
+    await page.getByText('Use one whole-book recording with page timestamps').click()
+    await page.getByLabel('Choose whole-book audio').setInputFiles({
+      name: 'reading.wav',
+      mimeType: 'audio/wav',
+      buffer: wavClip(4),
+    })
+    await expect(page.getByText('⏱ 4s')).toBeVisible()
+
+    // Even spacing is the quick starting point.
+    await page.getByRole('button', { name: /Space evenly/ }).click()
+    await expect(page.getByLabel('Page 1 start time in seconds')).toHaveValue('0')
+    await expect(page.getByLabel('Page 2 start time in seconds')).toHaveValue('2')
+
+    // Tapping along replaces them with real timings.
+    await page.getByRole('button', { name: /Listen & tap to set them/ }).click()
+    const sync = page.getByRole('dialog', { name: 'Match the recording to the pages' })
+    await expect(sync.getByText('/ 0:04')).toBeVisible()
+    await sync.getByRole('button', { name: 'Start over' }).click()
+
+    // Seek rather than waiting on real-time playback, so the tap lands exactly.
+    await page.waitForFunction(() => {
+      const el = document.querySelector('[role="dialog"] audio') as HTMLAudioElement | null
+      return Boolean(el && el.readyState >= 1)
+    })
+    await page.evaluate(() => {
+      const el = document.querySelector('[role="dialog"] audio') as HTMLAudioElement
+      el.currentTime = 1.5
+    })
+    await sync.getByRole('button', { name: /Turn the page \(1\/2\)/ }).click()
+    await expect(sync.getByText('1 marked')).toBeVisible()
+    await expect(sync.getByText('0:00–0:01')).toBeVisible()
+
+    // A tap that landed early can be nudged.
+    await sync.getByRole('button', { name: 'Move page 2 start half a second later' }).click()
+    await expect(sync.getByText('0:00–0:02')).toBeVisible()
+
+    await sync.getByRole('button', { name: 'Use these timings' }).click()
+    await expect(sync).toHaveCount(0)
+    await expect(page.getByLabel('Page 1 start time in seconds')).toHaveValue('0')
+    await expect(page.getByLabel('Page 1 end time in seconds')).toHaveValue('2')
+    await expect(page.getByLabel('Page 2 start time in seconds')).toHaveValue('2')
+    await expect(page.getByLabel('Page 2 end time in seconds')).toHaveValue('4')
+
+    // The timings survive saving.
+    await page.getByRole('button', { name: 'Next →' }).click()
+    await page.getByLabel('Rights status *').selectOption('original')
+    await page.getByRole('button', { name: 'Next →' }).click()
+    await expect(page.getByText(/passes validation/i)).toBeVisible()
+    await page.getByRole('button', { name: 'Add to library' }).click()
+    await expect(page.getByText('Tap Along Book')).toBeVisible()
   })
 
   test('hide, duplicate and delete books; storage screen lists usage', async ({ page }) => {

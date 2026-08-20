@@ -179,3 +179,194 @@
   font-weight: 700;
   color: var(--color-ink-soft);
 }
+
+/* ---- Bulk scan tools ---- */
+.bulkTools {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  padding: var(--space-3);
+  margin-block-end: var(--space-3);
+  background: var(--color-accent-soft);
+  border-radius: var(--radius-md);
+}
+
+/* ---- Page editor ---- */
+.editorBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: var(--space-3);
+  background: var(--color-overlay);
+  overflow-y: auto;
+}
+
+.editorPanel {
+  width: min(560px, 100%);
+  max-height: 92dvh;
+  overflow-y: auto;
+  background: var(--color-bg-raised);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-raised);
+  padding: var(--space-4);
+}
+
+.editorHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-block-end: var(--space-3);
+}
+
+.editorStage {
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+  max-height: 44dvh;
+  background: var(--color-bg-sunken);
+  border-radius: var(--radius-md);
+  padding: var(--space-2);
+  overflow: hidden;
+}
+
+.editorImage {
+  max-width: 100%;
+  max-height: 40dvh;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-card);
+}
+
+.editorCropMap {
+  position: relative;
+  height: 8px;
+  margin-block: var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-sunken);
+  overflow: hidden;
+}
+
+.editorCropBox {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: var(--color-accent);
+  border-radius: var(--radius-pill);
+}
+
+.editorControls {
+  display: grid;
+  gap: var(--space-2);
+  margin-block: var(--space-3);
+}
+
+.editorRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--tap-min);
+  flex-wrap: wrap;
+}
+
+.editorLabel {
+  font-weight: 700;
+  font-size: var(--text-sm);
+  min-width: 92px;
+}
+
+.editorValue {
+  font-variant-numeric: tabular-nums;
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+  min-width: 52px;
+  text-align: right;
+}
+
+.editorHint {
+  font-size: var(--text-xs);
+  color: var(--color-ink-soft);
+  margin-block: var(--space-1);
+}
+
+.editorActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-block-start: var(--space-3);
+  padding-block-start: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+/* ---- Read-along timing (tap as each page ends) ---- */
+.syncStage {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: var(--space-3);
+  align-items: start;
+  padding: var(--space-3);
+  margin-block: var(--space-3);
+  background: var(--color-bg-sunken);
+  border-radius: var(--radius-md);
+}
+
+.syncPage {
+  display: grid;
+  gap: var(--space-1);
+  justify-items: center;
+  text-align: center;
+}
+
+.syncPage img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: contain;
+  background: var(--color-bg);
+  border-radius: var(--radius-sm);
+}
+
+.syncText {
+  min-width: 0;
+}
+
+.syncClock {
+  font-variant-numeric: tabular-nums;
+  font-size: var(--text-lg);
+  font-weight: 800;
+  margin-block-end: var(--space-1);
+}
+
+.syncList {
+  list-style: none;
+  padding: 0;
+  margin-block: var(--space-3);
+  max-height: 30dvh;
+  overflow-y: auto;
+  display: grid;
+  gap: var(--space-1);
+}
+
+.syncListItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--tap-min);
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+}
+
+.syncListItem .editorValue {
+  flex: 1;
+  text-align: left;
+}
+
+@media (max-width: 480px) {
+  .syncStage {
+    grid-template-columns: 88px 1fr;
+  }
+}

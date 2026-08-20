@@ -94,6 +94,19 @@ localStorage. Both are included in backups.
   by content hash; images are normalised to ≤1600 px WebP. The 8-step wizard
   builds a `StoryBook`, validates it, then persists blobs + row atomically
   enough to clean up stale assets after edits.
+- **Scan cleanup** (`src/lib/imageEditing.ts`): a `DraftPage` keeps
+  `originalBlob` alongside `imageBlob`, and every edit is re-rendered from the
+  original — so edits never compound and Reset is exact. Measurement is a pure
+  function (`autoTrimBounds`) over downsampled RGBA: it takes the median of a
+  border ring as the background colour, then walks inward while each row or
+  column is ≥90 % background, and refuses a result that would keep less than a
+  fifth of the frame. Only `applyPageEdit` touches canvas.
+- **Read-along timing** (`src/lib/audioCues.ts`): for a whole-book recording,
+  the owner taps as each page ends rather than typing timestamps. A tap list is
+  the stored shape — `cuesFromMarks` expands it into per-page
+  `bookAudioCue` ranges (the last page runs to the recording's end),
+  `marksFromCues` inverts it so saved timings can be re-tapped, and
+  `validateCues` reports orderings that would misbehave in the reader.
 - **Backup**: a ZIP with `manifest.json`, per-book `story.json` (asset refs
   rewritten to `pkg:` paths) and the binary assets; optionally the whole file
   is AES-GCM encrypted with a PBKDF2-derived key. Restore rewrites `pkg:`

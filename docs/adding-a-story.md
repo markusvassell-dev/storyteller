@@ -21,6 +21,18 @@ Tips for scans: aim for one image per book page, roughly 3:4, at least
 ~1200 px on the long edge — the importer optimises them automatically and
 never touches your original files.
 
+Photographing rather than scanning is fine. Lay the book flat in even light,
+shoot every page from roughly the same distance, and don't worry about the
+desk showing around the edges or a slight tilt: the wizard's **Trim every
+page** and per-page straighten tools clean the whole set up in step 3
+(docs/admin-guide.md → *Tidying up photographed pages*).
+
+If the author or publisher offers a free recording of the book, you can attach
+it as one whole-book file and tap along with it once to mark where each page
+turns — no timestamps to type (docs/admin-guide.md → *Matching one recording
+to the pages*). Recordings are subject to the same rights record as the pages:
+say where the audio came from in step 6.
+
 ## Path 2 — Developer adds a bundled demo book (in the repo)
 
 Only for verified public-domain, openly licensed, or project-original

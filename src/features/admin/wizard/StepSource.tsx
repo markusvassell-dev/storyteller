@@ -38,6 +38,8 @@ export default function StepSource({ draft, update }: Props) {
       additions.push(
         newDraftPage({
           imageBlob: item.blob,
+          // Kept so straighten/trim always re-renders from the import.
+          originalBlob: item.blob,
           previewUrl: URL.createObjectURL(item.blob),
           sourceName: item.name,
           hash,

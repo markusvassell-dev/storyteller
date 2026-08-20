@@ -1,4 +1,6 @@
 import { useRef, useState, type ChangeEvent } from 'react'
+import { evenlySpacedCues, validateCues, type Cue } from '@/lib/audioCues'
+import AudioSync from './AudioSync'
 import type { Draft } from './wizardTypes'
 import styles from './wizard.module.css'
 
@@ -26,6 +28,7 @@ function readAudioDuration(blob: Blob): Promise<number | undefined> {
 
 export default function StepNarration({ draft, update }: Props) {
   const [playingKey, setPlayingKey] = useState<string>()
+  const [syncing, setSyncing] = useState(false)
   const audioRef = useRef<HTMLAudioElement | undefined>(undefined)
   const bookAudioInput = useRef<HTMLInputElement>(null)
 
@@ -112,6 +115,53 @@ export default function StepNarration({ draft, update }: Props) {
               </button>
             ) : null}
           </div>
+
+          {draft.bookAudioBlob && draft.pages.length > 0 ? (
+            <div className={styles.bulkTools} style={{ marginBlock: 'var(--space-3)' }}>
+              <span className={styles.editorLabel}>Page timings</span>
+              <button type="button" className="btn btn-primary" onClick={() => setSyncing(true)}>
+                🎧 Listen &amp; tap to set them
+              </button>
+              <button
+                type="button"
+                className="btn"
+                onClick={() => {
+                  const total = draft.bookAudioDuration
+                  if (!total) return
+                  const cues = evenlySpacedCues(draft.pages.length, total)
+                  update({
+                    pages: draft.pages.map((p, i) => ({
+                      ...p,
+                      cueStart: cues[i]?.start,
+                      cueEnd: cues[i]?.end,
+                    })),
+                  })
+                }}
+                disabled={!draft.bookAudioDuration}
+                title="Spread the pages evenly, then fine-tune"
+              >
+                ÷ Space evenly
+              </button>
+            </div>
+          ) : null}
+          {(() => {
+            const problems = validateCues(
+              draft.pages.map((p) =>
+                p.cueStart === undefined ? undefined : { start: p.cueStart, end: p.cueEnd },
+              ),
+              draft.bookAudioDuration,
+            )
+            return problems.length > 0 ? (
+              <ul role="alert" className={styles.blockers} style={{ marginTop: 'var(--space-3)' }}>
+                {problems.slice(0, 5).map((p, i) => (
+                  <li key={i}>
+                    Page {p.pageNumber} {p.message}
+                  </li>
+                ))}
+              </ul>
+            ) : null
+          })()}
+
           <table style={{ marginTop: 'var(--space-3)', borderCollapse: 'collapse' }}>
             <caption className="visually-hidden">Page start times within the recording</caption>
             <thead>
@@ -242,6 +292,24 @@ export default function StepNarration({ draft, update }: Props) {
           </label>
         </div>
       </div>
+
+      {syncing && draft.bookAudioBlob ? (
+        <AudioSync
+          pages={draft.pages}
+          audio={draft.bookAudioBlob}
+          duration={draft.bookAudioDuration}
+          onApply={(cues: (Cue | undefined)[]) =>
+            update({
+              pages: draft.pages.map((p, i) => ({
+                ...p,
+                cueStart: cues[i]?.start,
+                cueEnd: cues[i]?.end,
+              })),
+            })
+          }
+          onClose={() => setSyncing(false)}
+        />
+      ) : null}
     </>
   )
 }

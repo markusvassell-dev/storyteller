@@ -33,6 +33,20 @@ translator, illustrator, publication date, licence or public-domain basis,
 attribution requirements, regional restrictions, modification/commercial-use
 flags, and the date rights were checked (`rightsCheckedAt`).
 
+## Narration is separate material
+
+A recording is its own copyrighted work, distinct from the pages it reads. So
+when a book's audio and pictures come from different places — say pages you
+photographed from your own copy, paired with a reading the author or publisher
+gives away for free on their own website — the rights record has to describe
+both. Note the audio's source and terms in the Rights step alongside the
+pages'; if the recording is offered for personal listening only, the book is
+`personal-use only` even if you own the physical copy outright.
+
+Author-provided free audio is a legitimate source. A reading someone
+re-uploaded elsewhere is not, and neither is audio ripped from a purchased
+audiobook or a streaming service.
+
 ## Quarantine
 
 A book saved with `needs-review` rights is stored but **quarantined**: it

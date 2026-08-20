@@ -69,6 +69,17 @@ fails the build if an advisory book is not hidden.
 - **Image sets**: name files so natural sort gives the right order
   (`01.webp, 02.webp…`). The importer sorts naturally and shows the order for
   review before saving.
+- **Phone photographs**: don't pre-process them. Wizard step 3 has
+  **Trim every page** (auto background removal), rotate-all, and a per-page
+  straighten/crop editor; the logic lives in `src/lib/imageEditing.ts`
+  (`autoTrimBounds` is pure and unit-tested — extend it there, not in the UI).
+  Every edit re-renders from `DraftPage.originalBlob`, so edits never compound
+  and Reset always restores the import.
+- **One recording for a whole book**: don't ask the owner for timestamps.
+  Wizard step 5 → **Listen & tap to set them** captures them by tapping along
+  (`src/lib/audioCues.ts` + `AudioSync.tsx`). Marks are page *end* times;
+  `cuesFromMarks` turns them into per-page `bookAudioCue` ranges and
+  `validateCues` reports timings that can't work.
 - **Audio**: MP3 or M4A. To regenerate the synthetic demo narration:
   `npx tsx scripts/generate-demo-narration.ts` (needs `espeak-ng` + `lame`;
   mark such audio `narration.synthetic: true` — the UI must disclose it).

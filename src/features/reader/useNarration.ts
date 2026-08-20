@@ -86,6 +86,23 @@ export function useNarration(
       ? (settings.narrationPreference as NarrationSource)
       : availableSources[0],
   )
+  const userChoseSourceRef = useRef(false)
+
+  // The book often arrives after the first render (async load), which can
+  // leave `source` initialised from a placeholder. Re-sync with the real
+  // book's available sources until the reader explicitly picks one.
+  const preferenceSetting = settings.narrationPreference
+  useEffect(() => {
+    if (userChoseSourceRef.current) return
+    const preferred = availableSources.includes(preferenceSetting as NarrationSource)
+      ? (preferenceSetting as NarrationSource)
+      : availableSources[0]
+    setSourceState((current) =>
+      current === preferred || (current && availableSources.includes(current) && preferred === undefined)
+        ? current
+        : preferred,
+    )
+  }, [availableSources, preferenceSetting])
 
   useEffect(() => {
     void loadVoices().then((v) => setVoices(sortVoicesForEnglish(v)))
@@ -254,6 +271,7 @@ export function useNarration(
 
   const setSource = useCallback(
     (next: NarrationSource) => {
+      userChoseSourceRef.current = true
       stopAll()
       setSourceState(next)
       settingsRef.current.setSetting('narrationPreference', next)

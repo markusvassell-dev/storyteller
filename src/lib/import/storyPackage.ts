@@ -127,6 +127,9 @@ export async function exportStoryPackage(book: StoryBook): Promise<Blob> {
 
   const packRef = async (ref: string | undefined, label: string): Promise<string | undefined> => {
     if (!ref) return undefined
+    // Static (bundled) assets exist in every copy of the app — pack only
+    // device-local blobs.
+    if (!isIdbRef(ref)) return ref
     const blob = await getAssetBlob(ref)
     if (!blob) throw new StoryPackageError(`Missing asset for ${label}`)
     const name = `assets/${label}-${String(++counter).padStart(3, '0')}.${extForMime(blob.type)}`

@@ -121,6 +121,9 @@ export async function exportLibrary(
     let counter = 0
     const packRef = async (ref: string | undefined, label: string) => {
       if (!ref) return undefined
+      // Built-in static assets ship with the app on every device — only
+      // device-local (idb:) blobs need to travel inside the backup.
+      if (!ref.startsWith('idb:')) return ref
       const blob = await getAssetBlob(ref)
       if (!blob) throw new Error(`“${row.title}”: missing asset (${label}) — run a library check`)
       const name = `${dir}/assets/${label}-${String(++counter).padStart(3, '0')}.${extForMime(blob.type)}`

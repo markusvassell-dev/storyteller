@@ -12,7 +12,10 @@ export default defineConfig({
   reporter: [['list']],
   use: {
     baseURL: 'http://127.0.0.1:4173',
-    launchOptions: { executablePath },
+    launchOptions: {
+      executablePath,
+      args: ['--autoplay-policy=no-user-gesture-required'],
+    },
     trace: 'retain-on-failure',
   },
   webServer: {

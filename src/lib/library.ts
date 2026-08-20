@@ -115,7 +115,11 @@ export function useAllLibraryBooks(): { books: LibraryBook[]; loading: boolean }
     () => combine(builtins, rows, overrides, states),
     [builtins, rows, overrides, states],
   )
-  return { books, loading: !builtinsLoaded || rows === undefined }
+  // Loading must cover the per-book state too — the reader's resume logic
+  // initialises once loading turns false and needs saved progress present.
+  const loading =
+    !builtinsLoaded || rows === undefined || overrides === undefined || states === undefined
+  return { books, loading }
 }
 
 /** Reader-facing library: visible, non-quarantined books only. */

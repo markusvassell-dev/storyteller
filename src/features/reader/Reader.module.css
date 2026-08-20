@@ -21,6 +21,11 @@
 .chromeHidden .topBar {
   transform: translateY(-110%);
   opacity: 0;
+  visibility: hidden;
+  transition:
+    transform var(--motion-med) var(--ease-out),
+    opacity var(--motion-med) var(--ease-out),
+    visibility 0s var(--motion-med);
   pointer-events: none;
 }
 
@@ -174,6 +179,11 @@
 .chromeHidden .bottomBar {
   transform: translateY(120%);
   opacity: 0;
+  visibility: hidden;
+  transition:
+    transform var(--motion-med) var(--ease-out),
+    opacity var(--motion-med) var(--ease-out),
+    visibility 0s var(--motion-med);
   pointer-events: none;
 }
 

@@ -1,0 +1,21 @@
+{
+  // Cloudflare Workers static-assets config.
+  //
+  // The app is a static site with no server code, so there is no "main"
+  // entry point — this Worker exists only to serve ./dist. Without this file
+  // `wrangler deploy` / `wrangler versions upload` fails with "Missing
+  // entry-point to Worker script or to assets directory".
+  //
+  // NOTE: "name" must match the Worker in your Cloudflare account. If the
+  // dashboard calls it something else, change this line to match.
+  "name": "storyteller",
+  "compatibility_date": "2026-08-20",
+  "assets": {
+    "directory": "./dist",
+    // The library is client-routed, so a request for /book/<slug>, /admin or
+    // /settings has no file of its own. Serving index.html for unmatched
+    // paths (200, not a redirect) lets the router resolve them in the
+    // browser. public/_redirects does the same for Pages/Netlify hosts.
+    "not_found_handling": "single-page-application"
+  }
+}

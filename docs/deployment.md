@@ -18,7 +18,29 @@ needed:
 If a host ignores both, set the environment variable `NODE_VERSION=22.22.2`
 in its build settings instead.
 
-## Recommended: Cloudflare Pages (free)
+## Cloudflare Workers (the current dashboard default)
+
+Cloudflare now steers new projects to **Workers** rather than Pages. A Workers
+build deploys through wrangler, which needs a config naming the assets
+directory — `wrangler.jsonc` at the repo root provides it:
+
+- `assets.directory: "./dist"` — what to upload. Without this, the deploy step
+  fails with *"Missing entry-point to Worker script or to assets directory"*
+  even though the build succeeded.
+- `assets.not_found_handling: "single-page-application"` — serves
+  `index.html` for client-routed paths.
+- There is deliberately no `main`: the app is static, so the Worker serves
+  assets and runs no server code.
+
+**`name` must match the Worker in your account.** It is set to `storyteller`;
+if the dashboard named yours differently, edit that one line.
+
+Build settings: build command `npm run build`, deploy command
+`npx wrangler deploy` (Workers Builds substitutes `npx wrangler versions
+upload` for non-production branches, which uploads a version without putting
+it live). Set the **production branch to `main`** so pushes there go live.
+
+## Alternative: Cloudflare Pages (free)
 
 Unlimited free bandwidth, HTTPS, free custom domains, direct GitHub builds.
 

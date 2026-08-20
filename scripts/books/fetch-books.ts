@@ -300,6 +300,7 @@ async function buildBook(entry: CatalogEntry, dryRun: boolean): Promise<BuildRes
     storageLocation: 'builtin' as const,
     offlineStatus: 'available' as const,
     contentAdvisory: entry.contentAdvisory,
+    advisoryAcknowledged: entry.advisoryAcknowledged ?? false,
     featured: entry.featured ?? false,
     // Period content the owner should vet stays out of the library until they
     // choose to show it; the book itself is bundled unedited.
@@ -311,7 +312,11 @@ async function buildBook(entry: CatalogEntry, dryRun: boolean): Promise<BuildRes
   const written = writeStory(entry.slug, book)
   console.log(
     `   ✓ ${written.pages.length} pages · ${imageRefs.size} illustrations · ${(bytes / 1024 / 1024).toFixed(1)} MB${
-      entry.hiddenByDefault ? ' · HIDDEN (content advisory)' : ''
+      entry.contentAdvisory
+        ? entry.hiddenByDefault
+          ? ' · HIDDEN (content advisory)'
+          : ' · content advisory (shown)'
+        : ''
     }`,
   )
   return { slug: entry.slug, pages: written.pages.length, illustrations: imageRefs.size, bytes }

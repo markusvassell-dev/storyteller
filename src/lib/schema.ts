@@ -213,6 +213,12 @@ export const storyBookSchema = z
      * from `rights`, which is only about who may copy the work.
      */
     contentAdvisory: z.string().optional(),
+    /**
+     * True when the owner has read the advisory and chosen to show the book
+     * anyway. Without it a book carrying an advisory must stay hidden, so new
+     * period content cannot reach the library before anyone has looked at it.
+     */
+    advisoryAcknowledged: z.boolean().optional(),
     rightsCheckedAt: z.iso.datetime({ offset: true }).optional(),
     storageLocation: z.enum(['builtin', 'local']).default('local'),
     offlineStatus: z

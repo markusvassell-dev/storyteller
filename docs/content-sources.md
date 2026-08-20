@@ -40,7 +40,7 @@ domain in life+70 jurisdictions as well.
 Project Gutenberg's own header, footer and licence boilerplate are stripped
 during import, so nothing carries their trademark or licence wrapper; the
 canonical ebook page is recorded as each book's source. ⚠️ marks a book that
-is bundled but **hidden by default** pending the owner's review (see below).
+carries a content advisory (see below).
 
 ### With their original illustrations
 
@@ -97,12 +97,13 @@ would gain their original plates if `www.gutenberg.org` were reachable — see
 | The Wonderful Wizard of Oz | L. Frank Baum | — | 281 | 0 | [#55](https://www.gutenberg.org/ebooks/55) |
 | Through the Looking-Glass | Lewis Carroll | — | 195 | 0 | [#12](https://www.gutenberg.org/ebooks/12) |
 
-### Hidden pending review (content, not rights)
+### Books carrying a content advisory
 
-Two books are bundled **unedited** but kept out of the child-facing library
-because of period content. Their rights are perfectly clear — this is a
-suitability decision, recorded as `contentAdvisory` + `hidden: true` rather
-than as a rights problem:
+Two books contain period content worth knowing about. Their rights are
+perfectly clear — this is a suitability question, recorded as
+`contentAdvisory` rather than as a rights problem. **The owner reviewed both
+and chose to show them**, so they sit in the library with a "note for
+grown-ups" on their page (`advisoryAcknowledged: true`):
 
 - **The Adventures of Tom Sawyer** (1876) — the unabridged text contains
   racial slurs and period racial attitudes.
@@ -110,8 +111,10 @@ than as a rights problem:
   caricature. The gentler companion volume, *Peter Pan in Kensington
   Gardens*, is not hidden.
 
-Both remain reachable by direct link, show a "note for grown-ups" on their
-book page, and can be unhidden from the owner workshop at any time. Other
+Either can be hidden again at any time from the owner workshop. Any *new*
+book that acquires an advisory still defaults to hidden until someone
+acknowledges it, so unreviewed period content cannot reach the library by
+accident. Other
 period content is noted without hiding: the Grimm collections keep their
 original darkness, *The Jungle Book* and *Indian Fairy Tales* carry
 colonial-era framing, *Treasure Island* has pirate violence, and *Black

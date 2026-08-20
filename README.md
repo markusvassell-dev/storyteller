@@ -57,8 +57,9 @@ Requires Node 20+.
   project-made artwork; one includes prerecorded (synthetic, disclosed)
   narration.
 
-Full works, unabridged. Complete provenance for every book, including the two
-that are bundled but hidden by default for period content:
+Full works, unabridged. Complete provenance for every book — including two
+(*Tom Sawyer*, *Peter Pan*) that carry a content advisory for period racial
+content and show a "note for grown-ups" on their page:
 [docs/content-sources.md](docs/content-sources.md).
 
 Refresh or extend the classics with:

@@ -53,29 +53,35 @@ test.describe('public-domain classics', () => {
     await expect(page.getByText(/1 \/ \d{2,}/)).toBeVisible()
   })
 
-  test('books with a content advisory stay out of the library', async ({ page }) => {
+  test('acknowledged advisory books are in the library and carry their note', async ({
+    page,
+  }) => {
+    // The owner reviewed these advisories and chose to show the books; the
+    // note for grown-ups stays with them.
     await page.goto('/')
     const search = page.getByRole('searchbox', { name: /search books/i })
 
     await search.fill('tom sawyer')
     await page.waitForTimeout(300)
-    await expect(page.locator('a[href*="the-adventures-of-tom-sawyer"]')).toHaveCount(0)
+    await expect(page.locator('a[href*="the-adventures-of-tom-sawyer"]').first()).toBeVisible()
 
     await search.fill('peter pan')
     await page.waitForTimeout(300)
-    await expect(page.locator('a[href$="/book/peter-pan"]')).toHaveCount(0)
-    // The gentler companion volume is not hidden and should still be findable.
+    await expect(page.locator('a[href$="/book/peter-pan"]').first()).toBeVisible()
     await expect(
       page.locator('a[href*="peter-pan-in-kensington-gardens"]').first(),
     ).toBeVisible()
   })
 
-  test('an advisory book still opens directly, with the warning shown', async ({ page }) => {
-    // Hidden books remain reachable by link so the owner can review them.
+  test('an advisory book shows a note for grown-ups on its page', async ({ page }) => {
     await page.goto('/book/the-adventures-of-tom-sawyer')
     await expect(page.getByRole('heading', { name: /Tom Sawyer/ })).toBeVisible()
     await expect(page.getByText(/A note for grown-ups/i)).toBeVisible()
     await expect(page.getByText(/racial slurs/i)).toBeVisible()
+
+    await page.goto('/book/peter-pan')
+    await expect(page.getByText(/A note for grown-ups/i)).toBeVisible()
+    await expect(page.getByText(/caricature/i)).toBeVisible()
   })
 
   test('a classic can be saved for offline reading', async ({ page }) => {

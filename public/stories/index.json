@@ -689,13 +689,13 @@
       "pageCount": 339,
       "hasRecordedNarration": false,
       "rightsStatus": "public-domain",
-      "contentAdvisory": "The 1911 text depicts Native American characters with slurs and caricature. It is kept unedited but hidden from the library, so you can decide whether and when to share it.",
+      "contentAdvisory": "The 1911 text depicts Native American characters with slurs and caricature. It is presented unedited; a grown-up may want to read along or talk it through.",
       "source": "Text of the 1911 edition. Public domain; retrieved from Project Gutenberg ebook #16.",
       "attribution": "J. M. Barrie.",
       "featured": false,
-      "hidden": true,
-      "createdAt": "2026-08-20T20:15:32.103Z",
-      "updatedAt": "2026-08-20T20:15:32.103Z"
+      "hidden": false,
+      "createdAt": "2026-08-20T20:27:47.808Z",
+      "updatedAt": "2026-08-20T20:27:47.808Z"
     },
     {
       "id": "pd-peter-pan-in-kensington-gardens",
@@ -841,13 +841,13 @@
       "pageCount": 706,
       "hasRecordedNarration": false,
       "rightsStatus": "public-domain",
-      "contentAdvisory": "The unabridged 1876 text contains racial slurs and period racial attitudes. It is kept unedited but hidden from the library, so you can decide whether and when to share it.",
+      "contentAdvisory": "The unabridged 1876 text contains racial slurs and period racial attitudes. It is presented unedited; a grown-up may want to read along or talk it through.",
       "source": "Text of the 1876 edition; illustrations by True Williams. Public domain; retrieved from Project Gutenberg ebook #74.",
       "attribution": "Mark Twain, illustrated by True Williams.",
       "featured": false,
-      "hidden": true,
-      "createdAt": "2026-08-20T20:15:32.103Z",
-      "updatedAt": "2026-08-20T20:15:32.103Z"
+      "hidden": false,
+      "createdAt": "2026-08-20T20:27:34.247Z",
+      "updatedAt": "2026-08-20T20:27:34.247Z"
     },
     {
       "id": "pd-the-blue-fairy-book",

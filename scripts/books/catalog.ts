@@ -43,6 +43,11 @@ export interface CatalogEntry {
    */
   hiddenByDefault?: boolean
   contentAdvisory?: string
+  /**
+   * The owner has read the advisory and chosen to show the book. Required
+   * before an advisory book may appear in the library.
+   */
+  advisoryAcknowledged?: boolean
 }
 
 const PD_PRE1930 = 'Published before 1930, so in the public domain in the United States; author and illustrator died more than 70 years ago.'
@@ -272,10 +277,10 @@ export const CATALOG: CatalogEntry[] = [
     ageRange: '6-10',
     readingLevel: 'independent',
     tags: ['twain', 'mississippi'],
-    hiddenByDefault: true,
+    advisoryAcknowledged: true,
     contentAdvisory:
-      'The unabridged 1876 text contains racial slurs and period racial attitudes. It is kept unedited but hidden from the library, so you can decide whether and when to share it.',
-    contentNote: 'Hidden by default for period racial content; rights themselves are clear (public domain).',
+      'The unabridged 1876 text contains racial slurs and period racial attitudes. It is presented unedited; a grown-up may want to read along or talk it through.',
+    contentNote: 'Shown at the owner\u2019s request; carries a content advisory. Rights are clear (public domain).',
   },
 
   /* ---------------- Text classics (typeset as chapter books) ---------------- */
@@ -427,10 +432,10 @@ export const CATALOG: CatalogEntry[] = [
     ageRange: '6-10',
     readingLevel: 'independent',
     tags: ['barrie', 'neverland'],
-    hiddenByDefault: true,
+    advisoryAcknowledged: true,
     contentAdvisory:
-      'The 1911 text depicts Native American characters with slurs and caricature. It is kept unedited but hidden from the library, so you can decide whether and when to share it.',
-    contentNote: 'Hidden by default for period racial caricature; rights themselves are clear (public domain).',
+      'The 1911 text depicts Native American characters with slurs and caricature. It is presented unedited; a grown-up may want to read along or talk it through.',
+    contentNote: 'Shown at the owner\u2019s request; carries a content advisory. Rights are clear (public domain).',
   },
   {
     slug: 'peter-pan-in-kensington-gardens',

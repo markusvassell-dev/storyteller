@@ -105,10 +105,10 @@ for (const summary of index.data.books) {
   // Content suitability is separate from rights: a book may be perfectly
   // public domain and still carry period content a grown-up should vet. Such
   // books ship unedited but must stay hidden until the owner shows them.
-  if (book.contentAdvisory && !book.hidden) {
+  if (book.contentAdvisory && !book.hidden && !book.advisoryAcknowledged) {
     err(
       book.title,
-      'has a content advisory but is not hidden — it would appear in the child-facing library unreviewed',
+      'has a content advisory but is neither hidden nor acknowledged — it would appear in the library unreviewed',
     )
   }
   if (book.hidden && !book.contentAdvisory) {

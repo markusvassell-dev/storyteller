@@ -47,11 +47,15 @@ content a grown-up should vet — racial caricature, frightening scenes — so
 that is recorded as `contentAdvisory` plus `hidden: true`, never by pretending
 the rights are unclear.
 
-Such books are bundled **unedited**, stay out of the child-facing library
-until the owner shows them, display a "note for grown-ups" on their book page,
-and can be unhidden from the workshop. `npm run audit:rights` fails the build
-if a book carries an advisory but is not hidden, so unvetted period content
-cannot reach the library by accident.
+Such books are bundled **unedited** and default to hidden. They display a
+"note for grown-ups" on their book page whether hidden or not. Once the owner
+has read the advisory and decided to show a book, the catalog records
+`advisoryAcknowledged: true` and the book joins the library, keeping its note.
+
+`npm run audit:rights` fails the build if a book carries an advisory and is
+*neither* hidden *nor* acknowledged — so newly added period content cannot
+reach the library before anyone has looked at it, while books the owner has
+deliberately approved are unaffected.
 
 ## Project Gutenberg material
 

@@ -77,6 +77,13 @@ npx playwright test tests/e2e/reader.spec.ts --project=ipad-landscape
 npm run check            # typecheck + lint + unit + rights & asset audits
 ```
 
+## Continuous integration
+
+`.github/workflows/ci.yml` runs on every push to `main` and on pull requests:
+`npm ci` → `npm run check` → `npm run build` → `npm run audit:links`, on the
+Node version from `.node-version`. Playwright is deliberately excluded — it
+needs browser downloads — so run `npm run test:e2e` locally before a release.
+
 ## Audits as tests
 
 `npm run audit:rights` (also inside every build), `npm run audit:assets`,

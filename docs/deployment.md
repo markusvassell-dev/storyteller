@@ -70,10 +70,13 @@ pick up the rolled-back version on their next update check, via the in-app
 
 ## Fallback: GitHub Pages (no extra account)
 
-A ready workflow lives at `.github/workflows/deploy-pages.yml`.
+A ready workflow lives at `.github/workflows/deploy-pages.yml`. It is
+**manual-only** — it does not run on push, because `actions/deploy-pages`
+fails with a 404 until Pages is enabled, and publishing to a second host by
+accident is worse than not publishing at all.
 
 1. Repo **Settings → Pages → Source: GitHub Actions**.
-2. Push to `main` (or run the workflow manually). It builds with
+2. Actions tab → *Deploy to GitHub Pages* → **Run workflow**. It builds with
    `BASE_PATH=/<repo>/` so the PWA works from the project sub-path.
 3. Site: `https://<user>.github.io/<repo>/`. Custom domains are supported in
    the Pages settings.
